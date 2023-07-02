@@ -8,60 +8,58 @@ export default function Fridge(){
     const [items, setItems] = useState([])
 
     function handleInputUpdate(event){
-        setInputVal(event.target.value)
+        const rawInput = event.target.value
+        const formattedInput = rawInput.charAt(0).toUpperCase() + rawInput.slice(1).toLowerCase();
+        setInputVal(formattedInput)
     }
 
-    function addItem(e){
-        e.preventDefault()
-        setItems((prevItems) => {
-            return [
-                ...prevItems,
-                inputVal
-            ]
-        })
-        setInputVal('')
-        document.getElementById("inputField").value = "";
-    }
+    function add(e) {
+        e.preventDefault();
+        if(!inputVal){
+            alert('Input required')
+            return
+        } else if (items.includes(inputVal)){
+            alert('Item already added');
+            return;
+        } else {
+            setItems(prevItems => [...prevItems, inputVal]);
+            setInputVal('');
+            document.getElementById("input-field").value = "";
+        }
+      }
 
     function submitItem(e){
         e.preventDefault()
     }
 
-    function deleteItem(item){
+    function deleteItem(item) {
         setItems(prevItems => prevItems.filter(prevItem => prevItem !== item));
     }
 
-    const fridgeItems = items.map((item) => {
-        return (
-            <div key={item} >{item}<button type="button" onClick={() => deleteItem(item)}>delete</button></div>
-        )
-    })
+    const fridgeItems = items.map(item => (
+        <div key={item}>
+          {item}
+          <button type="button" onClick={() => deleteItem(item)}>Delete</button>
+        </div>
+      ));
 
 
     return (
-      <div>
+        <div>
         <form action="">
             <div>
                 <h2>{inputVal ? inputVal : 'Whats on your fridge?'}</h2>
             </div>
-            <div>
-                {fridgeItems}
-            </div>
+            <div>{fridgeItems}</div>
             <input
-                 type="text" 
-                 onChange={handleInputUpdate}
-                 id='inputField'
+                type="text"
+                onChange={handleInputUpdate}
+                id="input-field"
             />
-            <button 
-                type='button'
-                onClick={addItem}
-            >Add</button>
-            <button
-                type='button'
-                onSubmit={submitItem}  
-            >Submit</button>
+            <button type="button" onClick={add}>Add</button>
+            <button type="submit" onSubmit={submitItem}>Submit</button>
         </form>
-      </div>
+        </div>
     )
 }
 
