@@ -11,7 +11,7 @@ export default function Fridge(){
         setInputVal(event.target.value)
     }
 
-    function add(e){
+    function addItem(e){
         e.preventDefault()
         setItems((prevItems) => {
             return [
@@ -23,7 +23,7 @@ export default function Fridge(){
         document.getElementById("inputField").value = "";
     }
 
-    function submit(e){
+    function submitItem(e){
         e.preventDefault()
     }
 
@@ -54,11 +54,11 @@ export default function Fridge(){
             />
             <button 
                 type='button'
-                onClick={add}
+                onClick={addItem}
             >Add</button>
             <button
                 type='button'
-                onSubmit={submit}  
+                onSubmit={submitItem}  
             >Submit</button>
         </form>
       </div>
