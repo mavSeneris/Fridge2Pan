@@ -3,7 +3,7 @@ import { useState , useEffect} from 'react'
 
 
 export default function Fridge(){
-
+    
     const [inputVal, setInputVal] = useState('')
     const [items, setItems] = useState([])
 
@@ -13,7 +13,7 @@ export default function Fridge(){
         setInputVal(formattedInput)
     }
 
-    function add(e) {
+    function addItem(e) {
         e.preventDefault();
         if(!inputVal){
             alert('Input required')
@@ -26,9 +26,9 @@ export default function Fridge(){
             setInputVal('');
             document.getElementById("input-field").value = "";
         }
-      }
+    }
 
-    function submit(e){
+    function submitItem(e){
         e.preventDefault()
     }
 
@@ -45,20 +45,21 @@ export default function Fridge(){
 
 
     return (
-        <div>
-        <form action="">
-            <div>
-                <h2>{inputVal ? inputVal : 'Whats on your fridge?'}</h2>
-            </div>
-            <div>{fridgeItems}</div>
-            <input
-                type="text"
-                onChange={handleInputUpdate}
-                id="input-field"
-            />
-            <button type="button" onClick={add}>Add</button>
-            <button type="submit" onSubmit={submit}>Submit</button>
-        </form>
+        <div className="fridge">
+            <form action="" className="fridge__form">
+                <div className="fridge__header">
+                    <h2 className="fridge__title">{inputVal ? inputVal : 'Whats on your fridge?'}</h2>
+                </div>
+                <div className="fridge__items">{fridgeItems}</div>
+                <input
+                    type="text"
+                    onChange={handleInputUpdate}
+                    id="input-field"
+                    className="fridge__input"
+                />
+                <button type="button" onClick={addItem} className="fridge__button fridge__button--add">Add</button>
+                <button type="submit" onSubmit={submitItem} className="fridge__button fridge__button--submit">Submit</button>
+            </form>
         </div>
     )
 }
