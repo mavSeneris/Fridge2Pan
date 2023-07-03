@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export default function Fridge() {
   const [inputVal, setInputVal] = useState("");
@@ -23,13 +22,7 @@ export default function Fridge() {
     } else {
       setItems((prevItems) => [...prevItems, inputVal]);
       setInputVal("");
-      document.getElementById("input-field").value = "";
     }
-    setInputVal("");
-  }
-
-  function submitItem(event) {
-    event.preventDefault();
   }
 
   function deleteItem(item) {
@@ -40,6 +33,13 @@ export default function Fridge() {
     event.preventDefault();
     setItems([]);
   }
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      addItem(event);
+    }
+    setInputVal("")
+  };
 
   const fridgeItems = items.map((item) => (
     <div key={item} className="fridge__items">
@@ -57,13 +57,14 @@ export default function Fridge() {
           <form action="" className="fridge__form">
             <div className="fridge__header">
               <h2 className="fridge__title">
-                {inputVal ? inputVal : "Whats on your fridge?"}
+                {inputVal ? inputVal : "What's in your fridge?"}
               </h2>
             </div>
             <div className="fridge__controls">
               <input
                 type="text"
                 onChange={handleInputUpdate}
+                onKeyPress={handleKeyPress}
                 id="input-field"
                 className="fridge__input"
               />
@@ -82,13 +83,6 @@ export default function Fridge() {
                 Clear
               </button>
             </div>
-            <button
-              type="submit"
-              onSubmit={submitItem}
-              className="fridge__button fridge__button--submit"
-            >
-              Submit
-            </button>
             <div className="fridge__list">{fridgeItems}</div>
           </form>
         </div>
