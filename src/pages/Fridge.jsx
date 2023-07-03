@@ -26,6 +26,7 @@ export default function Fridge(){
             setInputVal('');
             document.getElementById("input-field").value = "";
         }
+        setInputVal("")
     }
 
     function submitItem(event){
