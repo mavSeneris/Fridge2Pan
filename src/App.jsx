@@ -1,13 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import Fridge from './components/Fridge'
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
+import "./App.css";
+import Fridge from "./pages/Fridge";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+
+const route = createBrowserRouter(createRoutesFromElements(
+  <Route path="/" element={<Layout/>}>
+    <Route index element={<Home/>}/>
+    <Route path="fridge" element={<Fridge/>}/>
+  </Route>
+))
 
 function App() {
   return (
-    <main>
-      <Fridge />
-    </main >
-  )
+    <RouterProvider router={route}/>
+  );
 }
 
-export default App
+export default App;
