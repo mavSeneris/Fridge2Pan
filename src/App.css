@@ -41,6 +41,24 @@ main{
     justify-content: center;
 }
 
+section{
+    padding: 24px;
+}
+
+/*  Header Component */
+header{
+    width: 100vw;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav{
+    display: flex;
+    gap: 20px;
+}
+
 /* Fridge Component */
 
 .submit-wrapper{
