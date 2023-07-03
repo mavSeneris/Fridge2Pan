@@ -54,6 +54,141 @@ section {
   padding: 24px;
 }
 
+.burger-menu {
+  display: none;
+  justify-self: center;
+  align-self: center;
+  padding-bottom: 15px;
+}
+
+.burger-toggle {
+  display: none;
+}
+
+.left span,
+.right span,
+.shopping-cart {
+  cursor: pointer;
+}
+
+/* Burger Menu styles */
+
+.burger-menu {
+  display: none;
+}
+
+.burger-toggle {
+  display: none;
+}
+
+.burger-icon {
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+}
+
+.burger-icon span {
+  background: #333;
+  display: block;
+  height: 2px;
+  position: absolute;
+  transition: transform 0.3s ease-in-out;
+  width: 25px;
+}
+
+.burger-icon span:first-child {
+  top: 0;
+}
+
+.burger-icon span:nth-child(2) {
+  top: 10px;
+}
+
+.burger-icon span:last-child {
+  top: 20px;
+}
+
+.burger-nav {
+  background: #fff;
+  display: none;
+  position: fixed;
+  top: 60px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.burger-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+}
+
+.burger-nav li {
+  margin: 0;
+  display: inline-block;
+}
+
+.burger-nav a {
+  color: #333;
+  display: block;
+  font-size: 24px;
+  padding: 20px;
+  text-decoration: none;
+  transition: background 0.3s ease-in-out;
+}
+
+.burger-nav a:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* Animation styles */
+
+.burger-toggle:checked ~ .burger-icon span:first-child {
+  transform: rotate(45deg) translate(5px, 13px);
+}
+
+.burger-toggle:checked ~ .burger-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-toggle:checked ~ .burger-icon span:last-child {
+  transform: rotate(-45deg) translate(1px, -9px);
+}
+
+.burger-toggle:checked ~ .burger-nav {
+  display: block;
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 30rem) {
+  .nav-menu {
+    display: none;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+}
+
 /*  Header Component */
 header {
   width: 100vw;
