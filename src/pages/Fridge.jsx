@@ -37,8 +37,8 @@ export default function Fridge() {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       addItem(event);
+      setInputVal("");
     }
-    setInputVal("")
   };
 
   const fridgeItems = items.map((item) => (
