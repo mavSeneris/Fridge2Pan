@@ -5,12 +5,12 @@ export default function Header(){
     const activeStyles = {
         fontWeight: "bold",
         // textDecoration: "underline",
-        color: "#161616"
+        color: "#f55742"
     }
 
   return (
     <header>
-        <h1>Fridge2Pan</h1>
+        <h1 className='main-logo'>Fridge2Pan</h1>
         <nav>
             <NavLink
                 to="/"
