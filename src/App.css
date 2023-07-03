@@ -71,7 +71,7 @@ section {
   cursor: pointer;
 }
 
-/* Burger Menu styles */
+/* BURGER MENU*/
 
 .burger-menu {
   display: none;
@@ -146,7 +146,7 @@ section {
 }
 
 .burger-nav a:hover {
-  background: #333;
+  background: rgba(31, 31, 252, 0.219);
   color: #fff;
 }
 
