@@ -1,3 +1,6 @@
+/* #1f1ffc 
+    #f55742
+*/
 /* Reset box model */
 *,
 *::before,
@@ -8,13 +11,19 @@
 }
 
 /* Remove list styles */
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
 /* Remove default margin and padding for some elements */
 body,
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p,
 blockquote,
 figure,
@@ -36,95 +45,100 @@ a {
   color: inherit;
 }
 
-main{
-    display: flex;
-    justify-content: center;
+main {
+  display: flex;
+  justify-content: center;
 }
 
-section{
-    padding: 24px;
+section {
+  padding: 24px;
 }
 
 /*  Header Component */
-header{
-    width: 100vw;
-    padding: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+header {
+  width: 100vw;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-nav{
-    display: flex;
-    gap: 20px;
+nav {
+  display: flex;
+  gap: 20px;
 }
 
-.main-logo{
-    background-color: #f55742;
-    color: white;
-    padding:5px 15px;
-    border-radius: 40px;
+.main-logo {
+  background-color: #f55742;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 40px;
+  box-shadow: -5px 8px 2px 1px rgba(31, 31, 252, 0.219);
 }
 
 /* Home  Component */
-.hero{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+.hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero > p {
-    width: 50%;
-    line-height: 1.5;
+  width: 50%;
+  line-height: 1.7;
 }
 
 /* Fridge Component */
-.submit-wrapper{
-    position: relative;
-    width: 100%; max-width: 375px;
+.submit-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 375px;
 }
 
-.fridge{
-    height: 100svh;
-    width: 100%; max-width: 375px;
-    overflow-x: auto;
+.fridge {
+  height: 100svh;
+  width: 100%;
+  max-width: 375px;
+  overflow-x: auto;
 }
 
-.fridge__header{
-    text-align: center;
+.fridge__header {
+  text-align: center;
 }
 
-.fridge__controls{
-    width: 100%; height:40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.fridge__controls {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.fridge__input{
-    width: 80%; height: 35px;
-    font-size: 1rem;
+.fridge__input {
+  width: 80%;
+  height: 35px;
+  font-size: 1rem;
 }
 
-.fridge__button--submit{
-    position: absolute;
-    bottom: 30px;
-    right: 20px;
+.fridge__button--submit {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
 }
 
-.fridge__list{
-    display: flex;
-    flex-direction: column;
-    gap:1px;
+.fridge__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
-.fridge__items{
-    border: 1px solid black;
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.fridge__items {
+  border: 1px solid black;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
