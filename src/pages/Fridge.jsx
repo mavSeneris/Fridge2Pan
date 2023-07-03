@@ -34,8 +34,9 @@ export default function Fridge() {
     setItems([]);
   }
 
-  const handleKeyPress = (event) => {
+  const handleKeyDown = (event) => {
     if (event.key === "Enter") {
+      event.preventDefault();
       addItem(event);
       setInputVal("");
     }
@@ -63,8 +64,9 @@ export default function Fridge() {
             <div className="fridge__controls">
               <input
                 type="text"
+                value={inputVal}
                 onChange={handleInputUpdate}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyDown}
                 id="input-field"
                 className="fridge__input"
               />
