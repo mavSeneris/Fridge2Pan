@@ -10,7 +10,9 @@ export default function Header(){
 
   return (
     <header>
-        <h1 className='main-logo'>Fridge2Pan</h1>
+        {/* <h1 className='main-logo'>Fridge2Pan 🥑</h1> */}
+        <h1 className='main-logo'>Fridge2Pan 🥦</h1>
+
         <nav>
             <NavLink
                 to="/"
