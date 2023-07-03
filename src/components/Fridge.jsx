@@ -36,8 +36,13 @@ export default function Fridge(){
         setItems(prevItems => prevItems.filter(prevItem => prevItem !== item));
     }
 
+    function clearAll(e){
+        e.preventDefault()
+        setItems([])
+    }
+
     const fridgeItems = items.map(item => (
-        <div key={item}>
+        <div key={item} className='fridge__items'>
           {item}
           <button type="button" onClick={() => deleteItem(item)}>Delete</button>
         </div>
@@ -45,21 +50,26 @@ export default function Fridge(){
 
 
     return (
-        <div className="fridge">
-            <form action="" className="fridge__form">
-                <div className="fridge__header">
-                    <h2 className="fridge__title">{inputVal ? inputVal : 'Whats on your fridge?'}</h2>
-                </div>
-                <div className="fridge__items">{fridgeItems}</div>
-                <input
-                    type="text"
-                    onChange={handleInputUpdate}
-                    id="input-field"
-                    className="fridge__input"
-                />
-                <button type="button" onClick={addItem} className="fridge__button fridge__button--add">Add</button>
-                <button type="submit" onSubmit={submitItem} className="fridge__button fridge__button--submit">Submit</button>
-            </form>
+        <div className="submit-wrapper">
+            <div className="fridge">
+                <form action="" className="fridge__form">
+                    <div className="fridge__header">
+                        <h2 className="fridge__title">{inputVal ? inputVal : 'Whats on your fridge?'}</h2>
+                    </div>
+                    <div className='fridge__controls'>
+                        <input
+                            type="text"
+                            onChange={handleInputUpdate}
+                            id="input-field"
+                            className="fridge__input"
+                        />
+                        <button type="button" onClick={addItem} className="fridge__button fridge__button--add">Add</button>
+                        <button type="button" onClick={clearAll} className="fridge__button fridge__button--clear">Clear</button>
+                    </div>
+                    <button type="submit" onSubmit={submitItem} className="fridge__button fridge__button--submit">Submit</button>
+                    <div className="fridge__list">{fridgeItems}</div>
+                </form>
+            </div>
         </div>
     )
 }
