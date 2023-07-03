@@ -13,8 +13,8 @@ export default function Fridge(){
         setInputVal(formattedInput)
     }
 
-    function addItem(e) {
-        e.preventDefault();
+    function addItem(event) {
+        event.preventDefault();
         if(!inputVal){
             alert('Input required')
             return
@@ -28,16 +28,16 @@ export default function Fridge(){
         }
     }
 
-    function submitItem(e){
-        e.preventDefault()
+    function submitItem(event){
+        event.preventDefault()
     }
 
     function deleteItem(item) {
         setItems(prevItems => prevItems.filter(prevItem => prevItem !== item));
     }
 
-    function clearAll(e){
-        e.preventDefault()
+    function clearAll(event){
+        event.preventDefault()
         setItems([])
     }
 
