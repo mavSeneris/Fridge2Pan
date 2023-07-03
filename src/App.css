@@ -36,7 +36,7 @@ dd {
 /* Set default font size and family */
 body {
   font-size: 16px;
-  font-family: Arial, sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 /* Remove hyperlink styles */
@@ -74,6 +74,7 @@ nav {
   padding: 5px 15px;
   border-radius: 40px;
   box-shadow: -5px 8px 2px 1px rgba(31, 31, 252, 0.219);
+  font-family: "Fugaz One", cursive;
 }
 
 /* Home  Component */
