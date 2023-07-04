@@ -75,6 +75,11 @@ section {
 
 .burger-menu {
   display: none;
+  align-items: center;
+  justify-content: center;
+  width: 30px; height: 30px;
+  padding:0;
+  /* border: 1px solid black; */
 }
 
 .burger-toggle {
@@ -84,8 +89,8 @@ section {
 .burger-icon {
   cursor: pointer;
   display: inline-block;
-  margin: 10px;
   position: relative;
+  width: 30px; height: 25px;
 }
 
 .burger-icon span {
@@ -186,7 +191,7 @@ section {
   }
 
   .burger-menu {
-    display: block;
+    display: flex;
   }
 }
 
