@@ -56,6 +56,17 @@ section {
   width: 100%;
 }
 
+button{
+  background-color: #f55742;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  font-size: 1rem;
+  font-family: 'inter', sans-serif;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
 .burger-menu {
   display: none;
   justify-self: center;
@@ -154,8 +165,9 @@ section {
 }
 
 .burger-nav a:hover {
-  background: rgba(31, 31, 252, 0.219);
-  color: #fff;
+  background: rgba(31, 31, 252, 0.288);
+  color: #f55742;
+  font-weight: 700;
 }
 
 /* Animation styles */
@@ -249,23 +261,31 @@ nav {
 }
 
 .fridge__form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 110px;
   width: 100%;
-  background-color: #f55742;
+  background-color: #ceafab;
 }
 
 .fridge__controls {
+  padding: 10px;
   width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 5px;
 }
 
 .fridge__input {
   width: 80%;
   height: 35px;
   font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  padding: 5px;
 }
 
 .fridge__button--submit {
