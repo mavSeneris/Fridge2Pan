@@ -4,13 +4,13 @@ import { NavLink } from "react-router-dom";
 export default function Header() {
   const [isChecked, setIsChecked] = useState(false);
 
-  const activeStyles = {
-    fontWeight: "bold",
-    textDecoration: "underline",
-    textDecorationColor: "#adadff",
-    color: "#f55742",
-    backgroundColor: "transparent",
-  };
+  // const activeStyles = {
+  //   fontWeight: "bold",
+  //   textDecoration: "underline",
+  //   textDecorationColor: "#adadff",
+  //   color: "#f55742",
+  //   backgroundColor: "transparent",
+  // };
 
   const burgerActiveStyles = {
     fontWeight: "bold",
