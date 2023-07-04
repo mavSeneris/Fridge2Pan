@@ -84,13 +84,14 @@ section {
 
 .burger-toggle {
   display: none;
+
 }
 
 .burger-icon {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  width: 30px; height: 25px;
+  width: 30px; height: 20px;
 }
 
 .burger-icon span {
@@ -118,11 +119,11 @@ section {
   background: #fff;
   display: none;
   position: fixed;
-  top: 60px;
+  top: 85px;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 999;
+  z-index: 1;
 }
 
 .burger-nav ul {
