@@ -42,6 +42,8 @@ export default function Fridge() {
     }
   };
 
+  console.log(`What can I cook with ${items.join(", ")} only.`);
+
   const fridgeItems = items.map((item) => (
     <div key={item} className="fridge__items">
       {item}
