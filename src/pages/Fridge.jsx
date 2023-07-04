@@ -56,14 +56,10 @@ export default function Fridge() {
       <div className="submit-wrapper">
         <div className="fridge">
           <form action="" className="fridge__form">
-            <div className="fridge__header">
-              <h2 className="fridge__title">
-                {inputVal ? inputVal : "What's in your fridge?"}
-              </h2>
-            </div>
             <div className="fridge__controls">
               <input
                 type="text"
+                placeholder="What's in your fridge?"
                 value={inputVal}
                 onChange={handleInputUpdate}
                 onKeyDown={handleKeyDown}
