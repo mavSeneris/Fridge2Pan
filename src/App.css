@@ -37,6 +37,7 @@ dd {
 body {
   font-size: 16px;
   font-family: "Inter", sans-serif;
+  height: 100%;
 }
 
 /* Remove hyperlink styles */
@@ -51,7 +52,8 @@ main {
 }
 
 section {
-  padding: 24px;
+  /* padding: 24px; */
+  width: 100%;
 }
 
 .burger-menu {
@@ -238,21 +240,18 @@ nav {
 }
 
 /* Fridge Component */
-.submit-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 375px;
-}
 
 .fridge {
-  height: 100svh;
+  height: calc(100vh - 94px); /* Subtract the header height */
   width: 100%;
-  max-width: 375px;
-  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.fridge__header {
-  text-align: center;
+.fridge__form{
+  height: 110px;
+  width: 100%;
+  background-color: #f55742;
 }
 
 .fridge__controls {
@@ -275,16 +274,24 @@ nav {
   right: 20px;
 }
 
+.fridge__scroll-wrapper{
+  height: calc(100vh - 200px);
+  overflow: auto;
+}
+
 .fridge__list {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1px;
 }
 
 .fridge__items {
-  border: 1px solid black;
-  height: 40px;
+  width: 80%;
+  max-width: 551px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid black;
 }
