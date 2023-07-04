@@ -12,6 +12,14 @@ export default function Header() {
     backgroundColor: "transparent",
   };
 
+  const burgerActiveStyles = {
+    fontWeight: "bold",
+    textDecorationColor: "#adadff",
+    color: "#f55742",
+    backgroundColor: "transparent",
+    background: "rgba(31, 31, 252, 0.219)"
+  };
+
   const handleClick = () => {
     setIsChecked(false);
   };
@@ -68,21 +76,21 @@ export default function Header() {
         <div className="burger-nav">
           <NavLink
             to="/"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
+            style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
             onClick={handleClick}
           >
             Home
           </NavLink>
           <NavLink
             to="fridge"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
+            style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
             onClick={handleClick}
           >
             Fridge
           </NavLink>
           <NavLink
             to="search-recipes"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
+            style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
             onClick={handleClick}
           >
             Search-Recipes

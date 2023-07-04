@@ -154,8 +154,9 @@ section {
 }
 
 .burger-nav a:hover {
-  background: rgba(31, 31, 252, 0.219);
-  color: #fff;
+  background: rgba(31, 31, 252, 0.288);
+  color: #f55742;
+  font-weight: 700;
 }
 
 /* Animation styles */
