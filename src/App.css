@@ -185,7 +185,7 @@ section {
   }
 }
 
-@media (max-width: 30rem) {
+@media (max-width: 531px) {
   .nav-menu {
     display: none;
     height: 100vh;
