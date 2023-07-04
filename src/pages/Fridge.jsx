@@ -53,9 +53,13 @@ export default function Fridge() {
 
   return (
     <section>
-      <div className="submit-wrapper">
+
         <div className="fridge">
+        <div className="fridge__scroll-wrapper">
+         <div className="fridge__list">{fridgeItems}</div>
+        </div>
           <form action="" className="fridge__form">
+
             <div className="fridge__controls">
               <input
                 type="text"
@@ -81,10 +85,9 @@ export default function Fridge() {
                 Clear
               </button>
             </div>
-            <div className="fridge__list">{fridgeItems}</div>
+           
           </form>
         </div>
-      </div>
     </section>
   );
 }
