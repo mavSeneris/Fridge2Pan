@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import EmptyState from "../components/EmptyState"
+
 
 export default function Search() {
   const [inputVal, setInputVal] = useState("");
+  const isRecipe = true;
 
   function handleInputUpdate(event) {
     const userInput = event.target.value;
@@ -18,6 +21,7 @@ export default function Search() {
             <button>Search</button>
           </form>
         </div>
+        {isRecipe && <EmptyState RecipeState={true} />}
       </div>
     </section>
   );

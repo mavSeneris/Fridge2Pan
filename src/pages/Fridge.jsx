@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import EmptyState from "../components/EmptyState"
+
 
 export default function Fridge() {
   const [inputVal, setInputVal] = useState("");
   const [items, setItems] = useState([]);
   const [response, setResponse] = useState("");
+
 
   function handleInputUpdate(event) {
     const rawInput = event.target.value;
@@ -87,6 +90,7 @@ export default function Fridge() {
       <div className="fridge">
         <div className="fridge__scroll-wrapper">
           <div className="fridge__list">{fridgeItems}</div>
+          {items.length < 1  && <EmptyState IngredientState={true} />}  
         </div>
         <form action="" className="fridge__form">
           <div className="fridge__controls">
