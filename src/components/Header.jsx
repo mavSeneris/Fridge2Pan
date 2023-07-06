@@ -52,14 +52,8 @@ export default function Header() {
           Search-Recipes
         </NavLink>
       </nav>
-
-
-
-
-
       
-
-      {/* BURGER MENU */}
+      {/*--- BURGER MENU ---*/}
       <div className="burger-menu">
         <input
           type="checkbox"
