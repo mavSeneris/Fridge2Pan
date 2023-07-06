@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EmptyState from "../components/EmptyState"
-
+import DeleteIcon from "../assets/DeleteIcon.svg"
 
 
 export default function Fridge() {
@@ -8,7 +8,7 @@ export default function Fridge() {
   const [items, setItems] = useState([]);
   const [response, setResponse] = useState("");
 
-
+  console.log('page rendered')
   function handleInputUpdate(event) {
     const rawInput = event.target.value;
     const formattedInput =
@@ -30,6 +30,10 @@ export default function Fridge() {
     }
   }
 
+  function submit(){
+    // fetchChatGPTResponse(items);
+  }
+
   function deleteItem(item) {
     setItems((prevItems) => prevItems.filter((prevItem) => prevItem !== item));
   }
@@ -39,6 +43,7 @@ export default function Fridge() {
     setItems([]);
   }
 
+  
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -47,38 +52,41 @@ export default function Fridge() {
     }
   };
 
-  useEffect(() => {
-    const fetchChatGPTResponse = async () => {
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer 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`, // Replace with your actual API key
-        },
-        body: JSON.stringify({
-          messages: [
-            { role: "system", content: "You: What can I cook with " + items.join(", ") + " only." },
-            { role: "user", content: "Suggest recipes" },
-          ],
-          model: "gpt-3.5-turbo", 
-        }),
-      });
+  const showButton  = {
+    display: items.length > 0 ? 'block' : 'none'
+    
+  }
+    
+  const fetchChatGPTResponse = async (items) => {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer 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`, // Replace with your actual API key
+      },
+      body: JSON.stringify({
+        messages: [
+          { role: "system", content: "You: What can I cook with " + items.join(", ") + " only." },
+          { role: "user", content: "Suggest recipes" },
+        ],
+        model: "gpt-3.5-turbo", 
+      }),
+    });
 
-      const data = await response.json();
-      const message = data.choices[0]?.message?.content || "";
-      setResponse(message.replace("AI:", "").trim());
-    };
+    const data = await response.json();
+    const message = data.choices[0]?.message?.content || "";
+    setResponse(message.replace("AI:", "").trim());
+  };
 
-    // fetchChatGPTResponse();
-  }, [items]);
-
+  useEffect(() => {submit}, [items]);
+  
   console.log(response)
 
   const fridgeItems = items.map((item) => (
     <div key={item} className="fridge__items">
       {item}
-      <button type="button" onClick={() => deleteItem(item)}>
-        Delete
+      <button className="fridge__button--delete" type="button" onClick={() => deleteItem(item)}>
+        <img className="delete-icon" src={DeleteIcon} alt="" />
       </button>
     </div>
   ));
@@ -106,20 +114,28 @@ export default function Fridge() {
               onClick={addItem}
               className="fridge__button fridge__button--add"
             >
-              Add
+            Add
             </button>
             <button
               type="button"
               onClick={clearAll}
               className="fridge__button fridge__button--clear"
             >
-              Clear
+            Clear
+            </button>
+            <button
+              style={showButton}
+              type="button"
+              onClick={submit}
+              className="fridge__button fridge__button--submit"
+            >
+              Look for Recipe
             </button>
           </div>
           
         </form>
       </div>
-      <h1>Secret key: {import.meta.env.VITE_OPENAI_KEY}</h1>
+      {/* <h1>Secret key: {import.meta.env.VITE_OPENAI_KEY}</h1> */}
     </section>
   );
 }
