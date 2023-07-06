@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+
 export default function Fridge() {
   const [inputVal, setInputVal] = useState("");
   const [items, setItems] = useState([]);
@@ -44,34 +45,31 @@ export default function Fridge() {
   };
 
   useEffect(() => {
-    const fetchResponse = async () => {
-      const response = await fetchChatGPTResponse(items);
-      setResponse(response);
+    const fetchChatGPTResponse = async () => {
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer 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`, // Replace with your actual API key
+        },
+        body: JSON.stringify({
+          messages: [
+            { role: "system", content: "You: What can I cook with " + items.join(", ") + " only." },
+            { role: "user", content: "Suggest recipes" },
+          ],
+          model: "gpt-3.5-turbo", 
+        }),
+      });
+
+      const data = await response.json();
+      const message = data.choices[0]?.message?.content || "";
+      setResponse(message.replace("AI:", "").trim());
     };
 
-    fetchResponse();
+    // fetchChatGPTResponse();
   }, [items]);
 
-  const fetchChatGPTResponse = async (items) => {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer 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", // Replace with your actual API key
-      },
-      body: JSON.stringify({
-        messages: [
-          { role: "system", content: "You: What can I cook with " + items.join(", ") + " only." },
-          { role: "user", content: "Suggest recipes" },
-        ],
-        model: "text-davinci-003", 
-      }),
-    });
-
-    const data = await response.json();
-    const message = data.choices[0]?.message?.content || "";
-    return message.replace("AI:", "").trim();
-  };
+  console.log(response)
 
   const fridgeItems = items.map((item) => (
     <div key={item} className="fridge__items">
@@ -114,11 +112,10 @@ export default function Fridge() {
               Clear
             </button>
           </div>
+          
         </form>
       </div>
-      <div className="response">
-        <p>{response}</p>
-      </div>
+      <h1>Secret key: {import.meta.env.VITE_OPENAI_KEY}</h1>
     </section>
   );
 }
