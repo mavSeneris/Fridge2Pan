@@ -46,6 +46,10 @@ a {
   color: inherit;
 }
 
+img{
+  width: 100%;;
+}
+
 main {
   display: flex;
   justify-content: center;
@@ -55,6 +59,8 @@ section {
   /* padding: 24px; */
   width: 100%;
 }
+
+
 
 button{
   background-color: #f55742;
@@ -296,6 +302,8 @@ nav {
 
 .fridge__scroll-wrapper{
   height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
   overflow: auto;
 }
 
@@ -313,5 +321,14 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.247);
+}
+
+
+.empty-state{
+  height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
