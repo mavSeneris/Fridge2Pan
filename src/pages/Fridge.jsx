@@ -31,7 +31,7 @@ export default function Fridge() {
   }
 
   function submit(){
-    // fetchChatGPTResponse(items);
+    fetchChatGPTResponse(items);
   }
 
   function deleteItem(item) {
@@ -62,7 +62,7 @@ export default function Fridge() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer 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`, // Replace with your actual API key
+        Authorization: `Bearer `, // Replace with your actual API key
       },
       body: JSON.stringify({
         messages: [
