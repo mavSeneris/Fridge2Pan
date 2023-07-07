@@ -29,7 +29,7 @@ export default function Fridge() {
   }
 
   function submit() {
-    fetchChatGPTResponse(items);
+    // fetchChatGPTResponse(items);
   }
 
   function deleteItem(item) {
@@ -102,7 +102,7 @@ export default function Fridge() {
         <button
           type="button"
           onClick={submit}
-          className={'fridge__button fridge__button--submit' }
+          className= "fridge__button fridge__button--submit"
         >
           Get Recipe
         </button>
