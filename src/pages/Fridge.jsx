@@ -96,22 +96,25 @@ export default function Fridge() {
     </div>
   ));
 
+  const fridgeListCard = (
+    <div className="fridge__list-card">
+      <div className="fridge__list">
+        <h3>Ingredients</h3>
+        {fridgeItems}
+      </div>
+    </div>
+  );
+
   return (
     <section>
       <div className="fridge">
-        <div className="fridge__scroll-wrapper">
-          <div className="fridge__list">
-            {/* Mav: added a title */}
-            <h3>Ingredients</h3> 
-            {fridgeItems}
-          </div>
-          {items.length < 1 && <EmptyState IngredientState={true} />}
-        </div>
+
+      {items.length == 0 ? <EmptyState IngredientState={true}/> : fridgeListCard }
+
         <form action="" className="fridge__form">
           <div className="fridge__controls">
             <input
               type="text"
-              placeholder="What's in your fridge?"
               value={inputVal}
               onChange={handleInputUpdate}
               onKeyDown={handleKeyDown}
@@ -140,6 +143,7 @@ export default function Fridge() {
             >
               Look for Recipe
             </button>
+
           </div>
         </form>
       </div>
