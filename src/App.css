@@ -275,7 +275,7 @@ nav {
 
 /* Fridge list/items */
 
-.submit-wrapper{
+.submit-wrapper {
   width: 90%;
   max-width: 500px;
   height: calc(96vh - 200px);
@@ -283,7 +283,10 @@ nav {
   position: relative;
 }
 
-.fridge-list-card{
+.fridge-list-card {
+  /* MAV: */
+  position: relative;
+  /* changes ends here: */
   width: 100%;
   max-width: 500px;
   height: calc(96vh - 200px);
@@ -296,8 +299,13 @@ nav {
   text-align: center;
 }
 
-.fridge-list__title{
+.fridge-list__title {
   padding: 15px;
+  /* MAV: */
+  position: sticky;
+  top: 0;
+  background-color: #fff; 
+  /* changes ends here  */
 }
 
 .fridge-list {
@@ -366,7 +374,6 @@ nav {
   width: 20px;
 }
 
-
 /* Empty State component */
 
 .empty-state {
@@ -394,4 +401,13 @@ nav {
 .empty-message {
   font-weight: bolder;
   color: #f55742;
+}
+
+/* Mav: Added style property */
+.recipe-content {
+  padding: 5px 20px 20px 20px;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  font-weight: 400;
 }

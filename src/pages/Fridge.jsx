@@ -29,7 +29,7 @@ export default function Fridge() {
   }
 
   function submit() {
-    // fetchChatGPTResponse(items);
+    fetchChatGPTResponse(items);
   }
 
   function deleteItem(item) {
@@ -54,7 +54,8 @@ export default function Fridge() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        
+        Authorization: `Bearer `,
+        organization: "",
       },
       body: JSON.stringify({
         messages: [
@@ -95,17 +96,27 @@ export default function Fridge() {
   const fridgeListCard = (
     <div className="submit-wrapper">
       <div className="fridge-list-card">
-        <h3 className="fridge-list__title">Ingredients</h3>
-        <div className="fridge-list">
-          {fridgeItems}
-        </div>
-        <button
-          type="button"
-          onClick={submit}
-          className= "fridge__button fridge__button--submit"
-        >
-          Get Recipe
-        </button>
+        <h3 className="fridge-list__title">
+          {/* *****Mav***** */}
+          {!response ? "Ingredients" : "Recipe:"}
+        </h3>
+        {!response ? (
+          <div className="fridge-list">{fridgeItems}</div>
+        ) : (
+          <div className="recipe">
+            <p className="recipe-content">{response}</p>
+          </div>
+        )}
+        {!response && (
+          <button
+            type="button"
+            onClick={submit}
+            className="fridge__button fridge__button--submit"
+          >
+            Get Recipe
+          </button>
+        )}
+        {/* *****changes ends here***** */}
       </div>
     </div>
   );
@@ -113,36 +124,38 @@ export default function Fridge() {
   return (
     <section>
       <div className="fridge">
+        {items.length == 0 ? (
+          <EmptyState IngredientState={true} />
+        ) : (
+          fridgeListCard
+        )}
 
-        {items.length == 0 ? <EmptyState IngredientState={true}/> : fridgeListCard }
-
-          <form className="fridge__form">
-            <div className="fridge__controls">
-              <input
-                type="text"
-                value={inputVal}
-                onChange={handleInputUpdate}
-                onKeyDown={handleKeyDown}
-                id="input-field"
-                className="fridge__input"
-              />
-              <button
-                type="button"
-                onClick={addItem}
-                className="fridge__button fridge__button--add"
-              >
-                Add
-              </button>
-              <button
-                type="button"
-                onClick={clearAll}
-                className="fridge__button fridge__button--clear"
-              >
-                Clear
-              </button>
-            </div>
-          </form>
-
+        <form className="fridge__form">
+          <div className="fridge__controls">
+            <input
+              type="text"
+              value={inputVal}
+              onChange={handleInputUpdate}
+              onKeyDown={handleKeyDown}
+              id="input-field"
+              className="fridge__input"
+            />
+            <button
+              type="button"
+              onClick={addItem}
+              className="fridge__button fridge__button--add"
+            >
+              Add
+            </button>
+            <button
+              type="button"
+              onClick={clearAll}
+              className="fridge__button fridge__button--clear"
+            >
+              Clear
+            </button>
+          </div>
+        </form>
       </div>
       {/* <h1>Secret key: {import.meta.env.VITE_OPENAI_KEY}</h1> */}
     </section>
