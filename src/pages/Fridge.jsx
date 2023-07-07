@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import EmptyState from "../components/EmptyState"
-import DeleteIcon from "../assets/DeleteIcon.svg"
-
+import EmptyState from "../components/EmptyState";
+import DeleteIcon from "../assets/DeleteIcon.svg";
 
 export default function Fridge() {
   const [inputVal, setInputVal] = useState("");
@@ -29,8 +28,8 @@ export default function Fridge() {
     }
   }
 
-  function submit(){
-    // fetchChatGPTResponse(items);
+  function submit() {
+    fetchChatGPTResponse(items);
   }
 
   function deleteItem(item) {
@@ -42,7 +41,6 @@ export default function Fridge() {
     setItems([]);
   }
 
-  
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -51,23 +49,26 @@ export default function Fridge() {
     }
   };
 
-  const showButton  = {
-    display: items.length > 0 ? 'block' : 'none'
-  }
-    
+  const showButton = {
+    display: items.length > 0 ? "block" : "none",
+  };
+
   const fetchChatGPTResponse = async (items) => {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer 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`, // Replace with your actual API key
+        
       },
       body: JSON.stringify({
         messages: [
-          { role: "system", content: "You: What can I cook with " + items.join(", ") + " only." },
+          {
+            role: "system",
+            content: "You: What can I cook with " + items.join(", ") + " only.",
+          },
           { role: "user", content: "Suggest recipes" },
         ],
-        model: "gpt-3.5-turbo", 
+        model: "gpt-3.5-turbo",
       }),
     });
 
@@ -76,14 +77,20 @@ export default function Fridge() {
     setResponse(message.replace("AI:", "").trim());
   };
 
-  useEffect(() => {submit}, [items]);
-  
-  console.log(response)
+  useEffect(() => {
+    submit;
+  }, [items]);
+
+  console.log(response);
 
   const fridgeItems = items.map((item) => (
     <div key={item} className="fridge__items">
       {item}
-      <button className="fridge__button--delete" type="button" onClick={() => deleteItem(item)}>
+      <button
+        className="fridge__button--delete"
+        type="button"
+        onClick={() => deleteItem(item)}
+      >
         <img className="delete-icon" src={DeleteIcon} alt="" />
       </button>
     </div>
@@ -93,8 +100,12 @@ export default function Fridge() {
     <section>
       <div className="fridge">
         <div className="fridge__scroll-wrapper">
-          <div className="fridge__list">{fridgeItems}</div>
-          {items.length < 1  && <EmptyState IngredientState={true} />}  
+          <div className="fridge__list">
+            {/* Mav: added a title */}
+            <h3>Ingredients</h3> 
+            {fridgeItems}
+          </div>
+          {items.length < 1 && <EmptyState IngredientState={true} />}
         </div>
         <form action="" className="fridge__form">
           <div className="fridge__controls">
@@ -112,14 +123,14 @@ export default function Fridge() {
               onClick={addItem}
               className="fridge__button fridge__button--add"
             >
-            Add
+              Add
             </button>
             <button
               type="button"
               onClick={clearAll}
               className="fridge__button fridge__button--clear"
             >
-            Clear
+              Clear
             </button>
             <button
               style={showButton}
@@ -130,7 +141,6 @@ export default function Fridge() {
               Look for Recipe
             </button>
           </div>
-          
         </form>
       </div>
       {/* <h1>Secret key: {import.meta.env.VITE_OPENAI_KEY}</h1> */}
