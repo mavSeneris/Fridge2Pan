@@ -72,7 +72,7 @@ button {
 }
 
 button:hover {
-  background-color: #fa8272;
+  background-color: #ff6b57;
 }
 
 button:active {
@@ -267,25 +267,71 @@ nav {
 /* Fridge Component */
 
 .fridge {
-  height: calc(100vh - 94px); /* Subtract the header height */
   width: 100%;
+  height: calc(100vh - 94px); /* Subtract the header height */
   display: flex;
   flex-direction: column;
 }
 
+/* Fridge list/items */
+
+.submit-wrapper{
+  width: 90%;
+  max-width: 500px;
+  height: calc(96vh - 200px);
+  margin: auto;
+  position: relative;
+}
+
+.fridge-list-card{
+  width: 100%;
+  max-width: 500px;
+  height: calc(96vh - 200px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid rgb(187, 187, 187);
+  box-shadow: -5px 8px 2px 1px rgba(31, 31, 252, 0.219);
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.fridge-list__title{
+  padding: 15px;
+}
+
+.fridge-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fridge__items {
+  width: 90%;
+  max-width: 551px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px;
+}
+
+/* Fridge form, buttons & input */
+
 .fridge__form {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 110px;
-  width: 100%;
   background-color: #ceafab;
 }
 
 .fridge__controls {
-  padding: 10px;
   width: 100%;
   height: 40px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -303,15 +349,14 @@ nav {
 
 .fridge__button--submit {
   position: absolute;
-  bottom: 140px;
+  bottom: 40px;
   right: 30px;
 }
 
-
 .fridge__button--delete {
-  border-radius: 20%;
   width: 25px;
   height: 25px;
+  border-radius: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -321,49 +366,6 @@ nav {
   width: 20px;
 }
 
-/* Fridge Items */
-
-.fridge__list-card{
-  height: calc(96vh - 200px);
-  width: 90%;
-  max-width: 500px;
-  margin: auto;
-  overflow: auto;
-  border: 1px solid rgb(187, 187, 187);
-  box-shadow: -5px 8px 2px 1px rgba(31, 31, 252, 0.219);
-  border-radius: 10px;
-  align-items: center;
-  position: relative;
-}
-
-
-
-.fridge__list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;;
-}
-
-.fridge__list > h3 {
-  padding: 10px;
-}
-
-.fridge__items {
-  width: 90%;
-  max-width: 551px;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 15px;
-}
-
-.item {
-  width: 30%;
-  text-align: center;
-  font-size: 1.1rem;
-}
 
 /* Empty State component */
 
