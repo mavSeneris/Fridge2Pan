@@ -59,8 +59,7 @@ export default function Fridge() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer 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`, // Replace with your actual API key
-        organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
+        
       },
       body: JSON.stringify({
         messages: [
