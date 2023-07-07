@@ -49,10 +49,6 @@ export default function Fridge() {
     }
   };
 
-  const showButton = {
-    display: items.length > 0 ? "block" : "none",
-  };
-
   const fetchChatGPTResponse = async (items) => {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -97,10 +93,19 @@ export default function Fridge() {
   ));
 
   const fridgeListCard = (
-    <div className="fridge__list-card">
-      <div className="fridge__list">
-        <h3>Ingredients</h3>
-        {fridgeItems}
+    <div className="submit-wrapper">
+      <div className="fridge-list-card">
+        <h3 className="fridge-list__title">Ingredients</h3>
+        <div className="fridge-list">
+          {fridgeItems}
+        </div>
+        <button
+          type="button"
+          onClick={submit}
+          className={'fridge__button fridge__button--submit' }
+        >
+          Get Recipe
+        </button>
       </div>
     </div>
   );
@@ -109,43 +114,35 @@ export default function Fridge() {
     <section>
       <div className="fridge">
 
-      {items.length == 0 ? <EmptyState IngredientState={true}/> : fridgeListCard }
+        {items.length == 0 ? <EmptyState IngredientState={true}/> : fridgeListCard }
 
-        <form action="" className="fridge__form">
-          <div className="fridge__controls">
-            <input
-              type="text"
-              value={inputVal}
-              onChange={handleInputUpdate}
-              onKeyDown={handleKeyDown}
-              id="input-field"
-              className="fridge__input"
-            />
-            <button
-              type="button"
-              onClick={addItem}
-              className="fridge__button fridge__button--add"
-            >
-              Add
-            </button>
-            <button
-              type="button"
-              onClick={clearAll}
-              className="fridge__button fridge__button--clear"
-            >
-              Clear
-            </button>
-            <button
-              style={showButton}
-              type="button"
-              onClick={submit}
-              className="fridge__button fridge__button--submit"
-            >
-              Look for Recipe
-            </button>
+          <form className="fridge__form">
+            <div className="fridge__controls">
+              <input
+                type="text"
+                value={inputVal}
+                onChange={handleInputUpdate}
+                onKeyDown={handleKeyDown}
+                id="input-field"
+                className="fridge__input"
+              />
+              <button
+                type="button"
+                onClick={addItem}
+                className="fridge__button fridge__button--add"
+              >
+                Add
+              </button>
+              <button
+                type="button"
+                onClick={clearAll}
+                className="fridge__button fridge__button--clear"
+              >
+                Clear
+              </button>
+            </div>
+          </form>
 
-          </div>
-        </form>
       </div>
       {/* <h1>Secret key: {import.meta.env.VITE_OPENAI_KEY}</h1> */}
     </section>
