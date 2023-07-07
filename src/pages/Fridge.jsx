@@ -8,7 +8,6 @@ export default function Fridge() {
   const [items, setItems] = useState([]);
   const [response, setResponse] = useState("");
 
-  console.log('page rendered')
   function handleInputUpdate(event) {
     const rawInput = event.target.value;
     const formattedInput =
@@ -54,7 +53,6 @@ export default function Fridge() {
 
   const showButton  = {
     display: items.length > 0 ? 'block' : 'none'
-    
   }
     
   const fetchChatGPTResponse = async (items) => {
@@ -62,7 +60,7 @@ export default function Fridge() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer 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`, // Replace with your actual API key
+        Authorization: `Bearer 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`, // Replace with your actual API key
       },
       body: JSON.stringify({
         messages: [
