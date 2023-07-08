@@ -39,6 +39,7 @@ export default function Fridge() {
   function clearAll(event) {
     event.preventDefault();
     setItems([]);
+    setResponse("")
   }
 
   const handleKeyDown = (event) => {
@@ -54,8 +55,6 @@ export default function Fridge() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer `,
-        organization: "",
       },
       body: JSON.stringify({
         messages: [
@@ -107,15 +106,15 @@ export default function Fridge() {
             <p className="recipe-content">{response}</p>
           </div>
         )}
-        {!response && (
+
           <button
             type="button"
             onClick={submit}
             className="fridge__button fridge__button--submit"
           >
-            Get Recipe
+            {!response ? "Get recipe": "New recipe"}
           </button>
-        )}
+  
         {/* *****changes ends here***** */}
       </div>
     </div>
