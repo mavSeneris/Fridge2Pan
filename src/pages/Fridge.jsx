@@ -29,7 +29,14 @@ export default function Fridge() {
   }
 
   function submit() {
-    fetchChatGPTResponse(items);
+    if (!response) {
+      // fetchChatGPTResponse(items);
+      setResponse("Here is your recipe")
+    } else {
+      // fetchChatGPTResponse(["show me another recipe"]);
+      setResponse("Here is your NEW  recipe")
+
+    }
   }
 
   function deleteItem(item) {
@@ -42,6 +49,10 @@ export default function Fridge() {
     setResponse("")
   }
 
+  function back(){
+    setResponse("")
+  }
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -50,19 +61,21 @@ export default function Fridge() {
     }
   };
 
-  const fetchChatGPTResponse = async (items) => {
+  const fetchChatGPTResponse = async (messages) => {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer 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",
+        organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
       },
       body: JSON.stringify({
         messages: [
           {
             role: "system",
-            content: "You: What can I cook with " + items.join(", ") + " only.",
+            content: "You: Show me a recipe for " + items.join(", ") + " only.",
           },
-          { role: "user", content: "Suggest recipes" },
+          { role: "user", content: messages[0] },
         ],
         model: "gpt-3.5-turbo",
       }),
@@ -106,17 +119,37 @@ export default function Fridge() {
             <p className="recipe-content">{response}</p>
           </div>
         )}
-
-          <button
-            type="button"
-            onClick={submit}
-            className="fridge__button fridge__button--submit"
-          >
-            {!response ? "Get recipe": "New recipe"}
-          </button>
-  
         {/* *****changes ends here***** */}
       </div>
+
+        <div className="fridge-card-controls">
+            <button
+              type="button"
+              onClick={submit}
+              className="fridge__button fridge__button--submit"
+            >
+              {!response ? "Get recipe": "New"}
+            </button>
+
+            {response && 
+            <>
+              <button
+                  type="button"
+                  onClick={back}
+                  className="fridge__button fridge__button--clear"
+              >
+                  Back
+              </button>
+              <button
+                  type="button"
+                  onClick={clearAll}
+                  className="fridge__button fridge__button--clear"
+            >
+                  Discard
+              </button>
+            </>
+            }
+          </div>
     </div>
   );
 
@@ -145,13 +178,6 @@ export default function Fridge() {
               className="fridge__button fridge__button--add"
             >
               Add
-            </button>
-            <button
-              type="button"
-              onClick={clearAll}
-              className="fridge__button fridge__button--clear"
-            >
-              Clear
             </button>
           </div>
         </form>
