@@ -30,11 +30,9 @@ export default function Fridge() {
 
   function submit() {
     if (!response) {
-      // fetchChatGPTResponse(items);
-      setResponse("Here is your recipe")
+      fetchChatGPTResponse(items);
     } else {
-      // fetchChatGPTResponse(["show me another recipe"]);
-      setResponse("Here is your NEW  recipe")
+      fetchChatGPTResponse(["show me another recipe"]);
 
     }
   }
@@ -66,8 +64,6 @@ export default function Fridge() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer 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",
-        organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
       },
       body: JSON.stringify({
         messages: [
