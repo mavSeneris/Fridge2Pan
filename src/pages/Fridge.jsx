@@ -6,6 +6,8 @@ export default function Fridge() {
   const [inputVal, setInputVal] = useState("");
   const [items, setItems] = useState([]);
   const [response, setResponse] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   function handleInputUpdate(event) {
     const rawInput = event.target.value;
@@ -33,7 +35,6 @@ export default function Fridge() {
       fetchChatGPTResponse(items);
     } else {
       fetchChatGPTResponse(["show me another recipe"]);
-
     }
   }
 
@@ -44,11 +45,11 @@ export default function Fridge() {
   function clearAll(event) {
     event.preventDefault();
     setItems([]);
-    setResponse("")
+    setResponse("");
   }
 
-  function back(){
-    setResponse("")
+  function back() {
+    setResponse("");
   }
 
   const handleKeyDown = (event) => {
@@ -60,26 +61,35 @@ export default function Fridge() {
   };
 
   const fetchChatGPTResponse = async (messages) => {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messages: [
-          {
-            role: "system",
-            content: "You: Show me a recipe for " + items.join(", ") + " only.",
-          },
-          { role: "user", content: messages[0] },
-        ],
-        model: "gpt-3.5-turbo",
-      }),
-    });
+    try {
+      setLoading(true);
+      const response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          method: "POST",
+          
+          body: JSON.stringify({
+            messages: [
+              {
+                role: "system",
+                content:
+                  "You: Show me a recipe for " + items.join(", ") + " only.",
+              },
+              { role: "user", content: messages[0] },
+            ],
+            model: "gpt-3.5-turbo",
+          }),
+        }
+      );
 
-    const data = await response.json();
-    const message = data.choices[0]?.message?.content || "";
-    setResponse(message.replace("AI:", "").trim());
+      const data = await response.json();
+      const message = data.choices[0]?.message?.content || "";
+      setResponse(message.replace("AI:", "").trim());
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError(error);
+    }
   };
 
   useEffect(() => {
@@ -118,36 +128,67 @@ export default function Fridge() {
         {/* *****changes ends here***** */}
       </div>
 
-        <div className="fridge-card-controls">
+      <div className="fridge-card-controls">
+        <button
+          type="button"
+          onClick={submit}
+          className="fridge__button fridge__button--submit"
+        >
+          {!response ? "Get recipe" : "New"}
+        </button>
+
+        {response && (
+          <>
             <button
               type="button"
-              onClick={submit}
-              className="fridge__button fridge__button--submit"
+              onClick={back}
+              className="fridge__button fridge__button--clear"
             >
-              {!response ? "Get recipe": "New"}
+              Back
             </button>
-
-            {response && 
-            <>
-              <button
-                  type="button"
-                  onClick={back}
-                  className="fridge__button fridge__button--clear"
-              >
-                  Back
-              </button>
-              <button
-                  type="button"
-                  onClick={clearAll}
-                  className="fridge__button fridge__button--clear"
+            <button
+              type="button"
+              onClick={clearAll}
+              className="fridge__button fridge__button--clear"
             >
-                  Discard
-              </button>
-            </>
-            }
-          </div>
+              Discard
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
+
+  if (loading) {
+    return (
+      <div className="loading-card">
+        <div className="loading-text">
+          <img
+            src={
+              "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f60e/u1f60e_u1f336-ufe0f.png"
+            }
+          />
+          <h2>Loading...</h2>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error-card">
+        <div className="error-text">
+          <img
+            src={
+              "https://www.gstatic.com/android/keyboard/emojikitchen/20230301/u1f62d/u1f62d_u1f336-ufe0f.png"
+            }
+          />
+          {/* <h3>There was an error: {error.message}</h3>; */}
+          <h3>Aww... No recipe found :( </h3>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section>
