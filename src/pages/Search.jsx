@@ -25,8 +25,8 @@ export default function Search() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer `,
-            organization: "",
+            Authorization: `Bearer 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`,
+            organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
           },
           body: JSON.stringify({
             messages: messages,
@@ -48,6 +48,37 @@ export default function Search() {
   function handleInputUpdate(event) {
     const userInput = event.target.value;
     setInputVal(userInput);
+  }
+
+  if (loading) {
+    return (
+      <div className="loading-card">
+        <div className="loading-text">
+          <img
+            src={
+              "https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f602/u1f602_u1f957.png"
+            }
+          />
+          <h2>Searching Recipe...</h2>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error-card">
+        <div className="error-text">
+          <img
+            src={
+              "https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f97a/u1f97a_u1f957.png"
+            }
+          />
+          {/* <h3>There was an error: {error.message}</h3>; */}
+          <h3>Aww... No recipe found :( </h3>
+        </div>
+      </div>
+    );
   }
 
   if (loading) {

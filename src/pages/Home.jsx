@@ -1,4 +1,5 @@
 import React from "react";
+import MealTime from '../components/MealTime';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
           meals. Reduce food waste and improve your cooking with Fridge2Pan.
           Download now and embark on a culinary adventure!
         </p>
+        <MealTime/>
       </div>
     </section>
   );
