@@ -25,7 +25,7 @@ export default function Search() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer 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`,
+            Authorization: `Bearer `,
             organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
           },
           body: JSON.stringify({
