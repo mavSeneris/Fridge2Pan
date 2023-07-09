@@ -67,11 +67,7 @@ export default function Fridge() {
         "https://api.openai.com/v1/chat/completions",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer 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`,
-            organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
-          },
+          
           body: JSON.stringify({
             messages: [
               {
