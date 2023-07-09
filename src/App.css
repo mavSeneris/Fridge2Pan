@@ -420,3 +420,35 @@ nav {
   font-size: 0.9rem;
   font-weight: 400;
 }
+
+.error-card,
+.loading-card{
+  padding: 20px;
+  width: 100%;
+}
+
+.error-text,
+.loading-text{
+  width: 100%;
+  max-width: 500px;
+  height: calc(96vh - 200px);
+  /* height: 80vh; */
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid rgb(187, 187, 187);
+  box-shadow: -5px 8px 2px 1px rgba(31, 31, 252, 0.219);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.error-text > img,
+.loading-text > img{
+  width: 60%;
+}
+
+
