@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MarkdownView from "react-showdown";
 import EmptyState from "../components/EmptyState";
 import DeleteIcon from "../assets/DeleteIcon.svg";
 
@@ -69,7 +70,7 @@ export default function Fridge() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer `,
+            Authorization: `Bearer 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`,
             organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
           },
           body: JSON.stringify({
@@ -77,7 +78,7 @@ export default function Fridge() {
               {
                 role: "system",
                 content:
-                  "You: Show me a recipe for " + items.join(", ") + " only.",
+                  "You: Show me a recipe for " + items.join(", ") + " only. Strictly in markdown format.",
               },
               { role: "user", content: messages[0] },
             ],
@@ -127,7 +128,17 @@ export default function Fridge() {
           <div className="fridge-list">{fridgeItems}</div>
         ) : (
           <div className="recipe">
-            <p className="recipe-content">{response}</p>
+            {/* <p className="recipe-content">{response}</p> */}
+            <MarkdownView
+              className="markdown-component"
+              markdown={response}
+              // options={{
+              //   tables: true,
+              //   emoji: true,
+              //   tasklists: true,
+              //   simpleLineBreaks: true,
+              // }}
+            />
           </div>
         )}
         {/* *****changes ends here***** */}

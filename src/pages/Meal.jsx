@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MarkdownView from "react-showdown";
 
 export default function Meal() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigateBack = useNavigate();
-  
-  
+
   const handleNavigateBack = () => {
     navigateBack(-1); // Navigate back to the previous link
   };
@@ -23,7 +23,7 @@ export default function Meal() {
           },
           {
             role: "user",
-            content: "You: Give me a quick recipe for this time of day.",
+            content: "You: Give me a random recipe for this time of day strictly in markdown format..",
           },
         ];
         const response = await fetch(
@@ -32,7 +32,7 @@ export default function Meal() {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer `,
+              Authorization: `Bearer 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`,
               organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
             },
             body: JSON.stringify({
@@ -87,10 +87,21 @@ export default function Meal() {
     <div>
       {response && (
         <div className="meal-card">
-          <span className="meal-back-to-home" onClick={handleNavigateBack}>&larr; Home</span>
+          <span className="meal-back-to-home" onClick={handleNavigateBack}>
+            &larr; Home
+          </span>
           <h3>Try this one!</h3>
           <div className="meal-response">
-            <p>{response}</p>
+            <MarkdownView
+            className="markdown-component"
+              markdown={response}
+              options={{
+                tables: true,
+                emoji: true,
+
+              }}
+            />
+            {/* <p>{response}</p> */}
           </div>
         </div>
       )}

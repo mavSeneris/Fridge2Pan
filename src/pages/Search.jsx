@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import EmptyState from "../components/EmptyState";
+import MarkdownView from "react-showdown";
+import { Markdown } from "react-showdown";
 
 export default function Search() {
   const [inputVal, setInputVal] = useState("");
+  const [dish, setDish] = useState("")
   const [recipe, setRecipe] = useState("");
   const [response, setResponse] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -10,12 +13,13 @@ export default function Search() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setDish(inputVal)
     try {
       setLoading(true);
       const messages = [
         {
           role: "system",
-          content: "You: Show me a recipe for " + inputVal,
+          content: "You: Show me a recipe for " + inputVal + "strictly in markdown format.",
         },
         { role: "user", content: inputVal },
       ];
@@ -25,7 +29,7 @@ export default function Search() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer `,
+            Authorization: `Bearer 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`,
             organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
           },
           body: JSON.stringify({
@@ -81,37 +85,6 @@ export default function Search() {
     );
   }
 
-  if (loading) {
-    return (
-      <div className="loading-card">
-        <div className="loading-text">
-          <img
-            src={
-              "https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f602/u1f602_u1f957.png"
-            }
-          />
-          <h2>Searching Recipe...</h2>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="error-card">
-        <div className="error-text">
-          <img
-            src={
-              "https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f97a/u1f97a_u1f957.png"
-            }
-          />
-          {/* <h3>There was an error: {error.message}</h3>; */}
-          <h3>Aww... No recipe found :( </h3>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <section>
       <div className="search-wrapper">
@@ -128,8 +101,17 @@ export default function Search() {
             </form>
             {recipe && (
               <div className="recipe-card">
-                <h3>Recipe for: {inputVal}</h3>
-                {recipe}
+                {/* <h3>Recipe for {dish}:</h3> */}
+                <MarkdownView
+                  className="markdown-component"
+                  markdown={recipe}
+                  options={{
+                    simpleLineBreaks: false,
+                    commonmark: true,
+                    tasklists: true,
+                    metadata: true,
+                  }}
+                />
               </div>
             )}
             {response && <EmptyState RecipeState={response} />}
