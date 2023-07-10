@@ -67,7 +67,11 @@ export default function Fridge() {
         "https://api.openai.com/v1/chat/completions",
         {
           method: "POST",
-          
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer `,
+            organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
+          },
           body: JSON.stringify({
             messages: [
               {
@@ -87,8 +91,9 @@ export default function Fridge() {
       setResponse(message.replace("AI:", "").trim());
       setLoading(false);
     } catch (error) {
-      setLoading(false);
       setError(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -165,10 +170,10 @@ export default function Fridge() {
         <div className="loading-text">
           <img
             src={
-              "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f60e/u1f60e_u1f336-ufe0f.png"
+              "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f9d0/u1f9d0_u1f336-ufe0f.png"
             }
           />
-          <h2>Loading...</h2>
+          <h2>Searching Recipe...</h2>
         </div>
       </div>
     );
