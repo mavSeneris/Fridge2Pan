@@ -24,12 +24,12 @@ export default function Meal() {
         const messages = [
           {
             role: "system",
-            content: "You: Give me a quick recipe for this time of day.",
+            content: "You: Give me a random recipe for this time of day day strictly in markdown format.",
           },
           {
             role: "user",
             content:
-              "You: Give me a random recipe for this time of day strictly in markdown format..",
+              "You: Give me a random recipe for this time of day strictly in markdown format.",
           },
         ];
         const response = await fetch(
