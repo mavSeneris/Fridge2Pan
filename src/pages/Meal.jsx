@@ -8,6 +8,11 @@ export default function Meal() {
   const [error, setError] = useState(null);
   const navigateBack = useNavigate();
 
+  const apiURL = import.meta.env.VITE_REACT_API_URL;
+  const apiKey = import.meta.env.VITE_REACT_API_KEY;
+  const apiOrg = import.meta.env.VITE_REACT_API_ORG;
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+
   const handleNavigateBack = () => {
     navigateBack(-1); // Navigate back to the previous link
   };
@@ -23,21 +28,22 @@ export default function Meal() {
           },
           {
             role: "user",
-            content: "You: Give me a random recipe for this time of day strictly in markdown format..",
+            content:
+              "You: Give me a random recipe for this time of day strictly in markdown format..",
           },
         ];
         const response = await fetch(
-          "https://api.openai.com/v1/chat/completions",
+          `${apiURL}`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer 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`,
-              organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
+              Authorization: `Bearer ${apiKey}`,
+              organization: `${apiOrg}`,
             },
             body: JSON.stringify({
               messages: messages,
-              model: "gpt-3.5-turbo",
+              model: `${apiModel}`,
             }),
           }
         );
@@ -93,12 +99,11 @@ export default function Meal() {
           <h3>Try this one!</h3>
           <div className="meal-response">
             <MarkdownView
-            className="markdown-component"
+              className="markdown-component"
               markdown={response}
               options={{
                 tables: true,
                 emoji: true,
-
               }}
             />
             {/* <p>{response}</p> */}

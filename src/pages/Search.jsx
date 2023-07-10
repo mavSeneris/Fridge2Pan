@@ -1,43 +1,48 @@
 import React, { useState } from "react";
 import EmptyState from "../components/EmptyState";
 import MarkdownView from "react-showdown";
-import { Markdown } from "react-showdown";
 
 export default function Search() {
   const [inputVal, setInputVal] = useState("");
-  const [dish, setDish] = useState("")
+  const [dish, setDish] = useState("");
   const [recipe, setRecipe] = useState("");
   const [response, setResponse] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const apiURL = import.meta.env.VITE_REACT_API_URL;
+  const apiKey = import.meta.env.VITE_REACT_API_KEY;
+  const apiOrg = import.meta.env.VITE_REACT_API_ORG;
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+
   async function handleSubmit(event) {
     event.preventDefault();
-    setDish(inputVal)
+    const messages = [
+      {
+        role: "system",
+        content:
+          "You: Show me a recipe for " +
+          inputVal +
+          "strictly in markdown format.",
+      },
+      { role: "user", content: inputVal },
+    ];
+    setDish(inputVal);
     try {
       setLoading(true);
-      const messages = [
-        {
-          role: "system",
-          content: "You: Show me a recipe for " + inputVal + "strictly in markdown format.",
+
+      const response = await fetch(`${apiURL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+          organization: `${apiOrg}`,
         },
-        { role: "user", content: inputVal },
-      ];
-      const response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer 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`,
-            organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
-          },
-          body: JSON.stringify({
-            messages: messages,
-            model: "gpt-3.5-turbo",
-          }),
-        }
-      );
+        body: JSON.stringify({
+          messages: messages,
+          model: `${apiModel}`,
+        }),
+      });
       const data = await response.json();
       console.log(data.choices[0].message.content);
       setRecipe(data.choices[0].message.content);

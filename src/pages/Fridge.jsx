@@ -10,6 +10,11 @@ export default function Fridge() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const apiURL = import.meta.env.VITE_REACT_API_URL;
+  const apiKey = import.meta.env.VITE_REACT_API_KEY;
+  const apiOrg = import.meta.env.VITE_REACT_API_ORG;
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+
   function handleInputUpdate(event) {
     const rawInput = event.target.value;
     const formattedInput =
@@ -64,28 +69,27 @@ export default function Fridge() {
   const fetchChatGPTResponse = async (messages) => {
     try {
       setLoading(true);
-      const response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer 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`,
-            organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
-          },
-          body: JSON.stringify({
-            messages: [
-              {
-                role: "system",
-                content:
-                  "You: Show me a recipe for " + items.join(", ") + " only. Strictly in markdown format.",
-              },
-              { role: "user", content: messages[0] },
-            ],
-            model: "gpt-3.5-turbo",
-          }),
-        }
-      );
+      const response = await fetch(`${apiURL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+          organization: `${apiOrg}`,
+        },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "system",
+              content:
+                "You: Show me a recipe for " +
+                items.join(", ") +
+                " only. Strictly in markdown format.",
+            },
+            { role: "user", content: messages[0] },
+          ],
+          model: `${apiModel}`,
+        }),
+      });
 
       const data = await response.json();
       const message = data.choices[0]?.message?.content || "";
