@@ -299,7 +299,9 @@ nav {
   box-shadow: -5px 8px 2px 1px rgba(31, 31, 252, 0.219);
   border-radius: 10px;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
+  /* padding: 20px; */
+  /* white-space: 'pre-wrap'; */
 }
 
 .fridge-list__title {
@@ -481,7 +483,7 @@ nav {
   font-size: 1rem;
 }
 
-.recipe-card{
+.recipe-card {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -491,10 +493,9 @@ nav {
   box-shadow: -5px 8px 2px 1px rgba(31, 31, 252, 0.219);
   border-radius: 10px;
 }
-
 
 /* Meal page*/
-.meal-card{
+.meal-card {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -505,10 +506,19 @@ nav {
   border-radius: 10px;
 }
 
-.meal-response{
+.meal-response {
   padding: 20px;
 }
 
-.meal-back-to-home{
+.meal-back-to-home {
   cursor: pointer;
+}
+
+.recipe {
+  padding: 20px;
+  white-space: pre-wrap;
+}
+
+.markdown-component {
+  white-space: pre-wrap;
 }

@@ -1,39 +1,48 @@
 import React, { useState } from "react";
 import EmptyState from "../components/EmptyState";
+import MarkdownView from "react-showdown";
 
 export default function Search() {
   const [inputVal, setInputVal] = useState("");
+  const [dish, setDish] = useState("");
   const [recipe, setRecipe] = useState("");
   const [response, setResponse] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const apiURL = import.meta.env.VITE_REACT_API_URL;
+  const apiKey = import.meta.env.VITE_REACT_API_KEY;
+  const apiOrg = import.meta.env.VITE_REACT_API_ORG;
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+
   async function handleSubmit(event) {
     event.preventDefault();
+    const messages = [
+      {
+        role: "system",
+        content:
+          "You: Show me a recipe for " +
+          inputVal +
+          "strictly in markdown format.",
+      },
+      { role: "user", content: inputVal },
+    ];
+    setDish(inputVal);
     try {
       setLoading(true);
-      const messages = [
-        {
-          role: "system",
-          content: "You: Show me a recipe for " + inputVal,
+
+      const response = await fetch(`${apiURL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+          organization: `${apiOrg}`,
         },
-        { role: "user", content: inputVal },
-      ];
-      const response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer `,
-            organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
-          },
-          body: JSON.stringify({
-            messages: messages,
-            model: "gpt-3.5-turbo",
-          }),
-        }
-      );
+        body: JSON.stringify({
+          messages: messages,
+          model: `${apiModel}`,
+        }),
+      });
       const data = await response.json();
       console.log(data.choices[0].message.content);
       setRecipe(data.choices[0].message.content);
@@ -48,37 +57,6 @@ export default function Search() {
   function handleInputUpdate(event) {
     const userInput = event.target.value;
     setInputVal(userInput);
-  }
-
-  if (loading) {
-    return (
-      <div className="loading-card">
-        <div className="loading-text">
-          <img
-            src={
-              "https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f602/u1f602_u1f957.png"
-            }
-          />
-          <h2>Searching Recipe...</h2>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="error-card">
-        <div className="error-text">
-          <img
-            src={
-              "https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f97a/u1f97a_u1f957.png"
-            }
-          />
-          {/* <h3>There was an error: {error.message}</h3>; */}
-          <h3>Aww... No recipe found :( </h3>
-        </div>
-      </div>
-    );
   }
 
   if (loading) {
@@ -128,8 +106,17 @@ export default function Search() {
             </form>
             {recipe && (
               <div className="recipe-card">
-                <h3>Recipe for: {inputVal}</h3>
-                {recipe}
+                {/* <h3>Recipe for {dish}:</h3> */}
+                <MarkdownView
+                  className="markdown-component"
+                  markdown={recipe}
+                  options={{
+                    simpleLineBreaks: false,
+                    commonmark: true,
+                    tasklists: true,
+                    metadata: true,
+                  }}
+                />
               </div>
             )}
             {response && <EmptyState RecipeState={response} />}

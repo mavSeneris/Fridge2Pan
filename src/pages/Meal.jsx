@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MarkdownView from "react-showdown";
 
 export default function Meal() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigateBack = useNavigate();
-  
-  
+
+  const apiURL = import.meta.env.VITE_REACT_API_URL;
+  const apiKey = import.meta.env.VITE_REACT_API_KEY;
+  const apiOrg = import.meta.env.VITE_REACT_API_ORG;
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+
   const handleNavigateBack = () => {
     navigateBack(-1); // Navigate back to the previous link
   };
@@ -19,25 +24,26 @@ export default function Meal() {
         const messages = [
           {
             role: "system",
-            content: "You: Give me a quick recipe for this time of day.",
+            content: "You: Give me a random recipe for this time of day day strictly in markdown format.",
           },
           {
             role: "user",
-            content: "You: Give me a quick recipe for this time of day.",
+            content:
+              "You: Give me a random recipe for this time of day strictly in markdown format.",
           },
         ];
         const response = await fetch(
-          "https://api.openai.com/v1/chat/completions",
+          `${apiURL}`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer `,
-              organization: "org-2fIccQkIhVpzTF83cBXhZsHF",
+              Authorization: `Bearer ${apiKey}`,
+              organization: `${apiOrg}`,
             },
             body: JSON.stringify({
               messages: messages,
-              model: "gpt-3.5-turbo",
+              model: `${apiModel}`,
             }),
           }
         );
@@ -87,10 +93,20 @@ export default function Meal() {
     <div>
       {response && (
         <div className="meal-card">
-          <span className="meal-back-to-home" onClick={handleNavigateBack}>&larr; Home</span>
+          <span className="meal-back-to-home" onClick={handleNavigateBack}>
+            &larr; Home
+          </span>
           <h3>Try this one!</h3>
           <div className="meal-response">
-            <p>{response}</p>
+            <MarkdownView
+              className="markdown-component"
+              markdown={response}
+              options={{
+                tables: true,
+                emoji: true,
+              }}
+            />
+            {/* <p>{response}</p> */}
           </div>
         </div>
       )}
