@@ -107,8 +107,6 @@ export default function Fridge() {
     submit;
   }, [items]);
 
-  console.log(response);
-
   const fridgeItems = items.map((item) => (
     <div key={item} className="fridge__items">
       {item}
@@ -125,7 +123,7 @@ export default function Fridge() {
   const fridgeList = (
     <div className="fridge-list">{fridgeItems}</div>
   )
-
+  
   const recipe = (
       <div className="recipe">
       {/* <p className="recipe-content">{response}</p> */}
@@ -144,8 +142,8 @@ export default function Fridge() {
 
   const fridgeListCard = (
     <div className="submit-wrapper">
-      <div className="fridge-list-card">
-        <h3 className="fridge-list__title">
+      <div className="fridge-card">
+        <h3 className="fridge-card__title">
           {!response ? "Ingredients" : "Recipe:"}
         </h3>
         {!response ? fridgeList : recipe}
