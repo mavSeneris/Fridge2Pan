@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MarkdownView from "react-showdown";
 import EmptyState from "../components/EmptyState";
-import ContentLoader from "../components/ContentLoader"
+import ContentLoader from "../components/contentLoader"
 import DeleteIcon from "../assets/DeleteIcon.svg";
 
 export default function Fridge() {
@@ -181,11 +181,11 @@ export default function Fridge() {
   );
 
   if (loading) {
-    return <ContentLoader isLoading={true}/>
+    return <ContentLoader fridgeView={true} isLoading={true}/>
   }
 
   if (error){
-    return <ContentLoader isLoading={false}/>
+    return <ContentLoader fridgeView={true} isLoading={false}/>
   }
 
   return (
