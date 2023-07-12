@@ -70,12 +70,12 @@ export default function Fridge() {
   const fetchChatGPTResponse = async (messages) => {
     try {
       setLoading(true);
-      const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
+      const response = await fetch(`${apiURL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer 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`,
-          organization: `org-2fIccQkIhVpzTF83cBXhZsHF`,
+          Authorization: `Bearer ${apiKey}`,
+          organization: `${apiOrg}`,
         },
         body: JSON.stringify({
           messages: [
