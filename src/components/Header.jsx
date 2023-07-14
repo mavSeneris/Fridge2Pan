@@ -5,6 +5,7 @@ import { auth } from "../api";
 
 export default function Header() {
   const [isChecked, setIsChecked] = useState(false);
+  
 
   const activeStyles = {
     fontWeight: "bold",
@@ -26,11 +27,13 @@ export default function Header() {
     setIsChecked(false);
   };
 
-  function fakeLogOut() {
+  function logOut() {
     localStorage.removeItem("loggedin");
+    // localStorage.setItem("loggedin", "false");
     signOut(auth)
       .then(() => {
         console.log("Logged out!");
+        setIsChecked(false);
       })
       .catch((error) => {
         // An error happened.
@@ -78,7 +81,7 @@ export default function Header() {
         >
           Login
         </NavLink>
-        <button onClick={fakeLogOut}>X</button>
+        <button onClick={logOut}>X</button>
       </nav>
 
       {/*--- BURGER MENU ---*/}
@@ -131,7 +134,7 @@ export default function Header() {
           >
             Login
           </NavLink>
-          <button onClick={fakeLogOut}>X</button>
+          <button onClick={logOut}>X</button>
         </div>
       </nav>
       {/* --------- */}

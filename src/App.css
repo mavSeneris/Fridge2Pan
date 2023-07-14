@@ -524,6 +524,7 @@ nav {
 }
 
 /* Register Page */
+
 .login-container,
 .register-container {
   display: flex;
@@ -537,6 +538,7 @@ nav {
   height: calc(100vh - 150px);
   /* justify-content: space; */
 }
+
 
 .login-container > h1,
 .register-container > h1{
@@ -588,4 +590,16 @@ nav {
 
 .red{
   color: red;
+}
+
+/* Temporary Styles */
+.saved-recipe{
+  width: 90%;
+  height: calc(100vh - 150px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
 }

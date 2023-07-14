@@ -6,6 +6,7 @@ import {
   useActionData,
   useNavigation,
   Link,
+  useLocation
 } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../api";
@@ -37,12 +38,15 @@ export default function Login() {
   const errorMessage = useActionData();
   const message = useLoaderData();
   const navigation = useNavigation();
+  const location = useLocation()
+  const authMessage = location.search.slice(9).replace(/%20/g, " ") 
 
   return (
     <div className="login-container">
       <h1>Login in to your account</h1>
       {message && <h3 className="red">{message}</h3>}
       {errorMessage && <h3 className="red">{errorMessage}</h3>}
+      {authMessage && <h3 className="red">{authMessage}</h3>}
 
       <Form method="post" className="login-form" replace>
         <input name="email" type="email" placeholder="Email address" />

@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function SavedRecipe() {
   return (
-    <div>SavedRecipe</div>
-  )
+    <div className="saved-recipe">
+      <h3>Saved Recipe goes here</h3>
+    </div>
+  );
 }
