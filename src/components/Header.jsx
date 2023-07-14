@@ -5,7 +5,7 @@ import { auth } from "../api";
 
 export default function Header() {
   const [isChecked, setIsChecked] = useState(false);
-  
+  const isLoggedIn = localStorage.getItem("loggedin");
 
   const activeStyles = {
     fontWeight: "bold",
@@ -74,14 +74,22 @@ export default function Header() {
         >
           Saved Recipes
         </NavLink>
-        <NavLink
-          to="login"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-          onClick={handleClick}
-        >
-          Login
-        </NavLink>
-        <button onClick={logOut}>X</button>
+        {!isLoggedIn ? (
+            <NavLink
+              to="login"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+              onClick={handleClick}
+            >
+              Login
+            </NavLink>
+          ) : (
+            <NavLink
+              style={({ isActive }) => (!isActive ? activeStyles : null)}
+              onClick={logOut}
+            >
+              Log out
+            </NavLink>
+          )}
       </nav>
 
       {/*--- BURGER MENU ---*/}
@@ -127,14 +135,22 @@ export default function Header() {
           >
             Saved Recipes
           </NavLink>
-          <NavLink
-            to="login"
-            style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
-            onClick={handleClick}
-          >
-            Login
-          </NavLink>
-          <button onClick={logOut}>X</button>
+          {!isLoggedIn ? (
+            <NavLink
+              to="login"
+              style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
+              onClick={handleClick}
+            >
+              Login
+            </NavLink>
+          ) : (
+            <NavLink
+              style={({ isActive }) => (!isActive ? burgerActiveStyles : null)}
+              onClick={logOut}
+            >
+              Log out
+            </NavLink>
+          )}
         </div>
       </nav>
       {/* --------- */}
