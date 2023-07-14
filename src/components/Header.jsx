@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../api";
 
@@ -43,7 +43,9 @@ export default function Header() {
   return (
     <header>
       {/* <h1 className='main-logo'>Fridge2Pan 🥑</h1> */}
-      <h1 className="main-logo">Fridge2Pan 🥦</h1>
+      <Link to="/">
+        <h1 className="main-logo">Fridge2Pan 🥦</h1>
+      </Link>
 
       <nav className="nav-menu">
         <NavLink
@@ -75,21 +77,22 @@ export default function Header() {
           Saved Recipes
         </NavLink>
         {!isLoggedIn ? (
-            <NavLink
-              to="login"
-              style={({ isActive }) => (isActive ? activeStyles : null)}
-              onClick={handleClick}
-            >
-              Login
-            </NavLink>
-          ) : (
-            <NavLink
-              style={({ isActive }) => (!isActive ? activeStyles : null)}
-              onClick={logOut}
-            >
-              Log out
-            </NavLink>
-          )}
+          <NavLink
+            to="login"
+            style={({ isActive }) => (isActive ? activeStyles : null)}
+            onClick={handleClick}
+          >
+            Login
+          </NavLink>
+        ) : (
+          <NavLink
+            to="login"
+            style={({ isActive }) => (isActive ? activeStyles : null)}
+            onClick={logOut}
+          >
+            Log out
+          </NavLink>
+        )}
       </nav>
 
       {/*--- BURGER MENU ---*/}
@@ -145,7 +148,8 @@ export default function Header() {
             </NavLink>
           ) : (
             <NavLink
-              style={({ isActive }) => (!isActive ? burgerActiveStyles : null)}
+              to="login"
+              style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
               onClick={logOut}
             >
               Log out
