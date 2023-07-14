@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 // import { loginUser } from "../api";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../api";
+import { auth } from "../firebase";
 
 export async function action({ request }) {
     const formData = await request.formData();
