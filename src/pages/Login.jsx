@@ -20,7 +20,7 @@ export async function action({ request }) {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      console.log(user);
+      console.log("Successfully logged in!");
       localStorage.setItem("loggedin", true);
       return redirect(pathname);
     } catch (err) {
@@ -28,6 +28,8 @@ export async function action({ request }) {
       const errorMessage = err.message;
       if(errorMessage === "Firebase: Error (auth/user-not-found)."){
         return "User not found :("
+      }else if(errorMessage === "Firebase: Error (auth/wrong-password)."){
+        return "Wrong username or password."
       }
       console.log(errorMessage);
       return err.message;
@@ -56,7 +58,7 @@ export default function Login() {
           type="submit"
           disabled={navigation.state === "submitting"}
         >
-          {navigation.state === "submitting" ? "Logging in..." : "Submit"}
+          {navigation.state === "submitting" ? "Logging in..." : "Login"}
         </button>
       </Form>
       <p>

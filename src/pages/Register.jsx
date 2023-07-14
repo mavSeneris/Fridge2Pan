@@ -12,26 +12,27 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../api";
 
 export async function action({ request }) {
-  const formData = await request.formData();
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const pathname =
-    new URL(request.url).searchParams.get("redirectTo") || "/fridge";
-  try {
-    // const data = await loginUser({ email, password });
-    createUserWithEmailAndPassword(auth, email, password).then(
-      (userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user)
+    const formData = await request.formData();
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const pathname =
+      new URL(request.url).searchParams.get("redirectTo") || "/saved-recipes";
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log("Successfully logged in!");
+      localStorage.setItem("loggedin", true);
+      return redirect(pathname);
+    } catch (err) {
+      const errorCode = err.code;
+      const errorMessage = err.message;
+      if(errorMessage === "Firebase: Password should be at least 6 characters (auth/weak-password)."){
+        return "Weak password."
       }
-    );
-    localStorage.setItem("loggedin", true);
-    return redirect(pathname);
-  } catch (err) {
-    return err.message;
+      console.log(errorMessage);
+      return err.message;
+    }
   }
-}
 
 export default function Register() {
   const errorMessage = useActionData();
