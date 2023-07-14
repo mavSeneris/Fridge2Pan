@@ -13,7 +13,7 @@ export default function Search() {
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
-  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -110,12 +110,6 @@ export default function Search() {
                 <MarkdownView
                   className="markdown-component"
                   markdown={recipe}
-                  options={{
-                    simpleLineBreaks: false,
-                    commonmark: true,
-                    tasklists: true,
-                    metadata: true,
-                  }}
                 />
               </div>
             )}

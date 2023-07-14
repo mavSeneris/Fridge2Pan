@@ -1,32 +1,54 @@
-// export async function getResponse(items) {
-//   const response = await fetch("https://api.openai.com/v1/chat/completions", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer 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`,
-//       organization: "2fIccQkIhVpzTF83cBXhZsHF",
-//     },
-//     body: JSON.stringify({
-//       messages: [
-//         {
-//           role: "system",
-//           content: "You: What can I cook with " + items.join(", ") + " only.",
-//         },
-//         { role: "user", content: "Suggest recipes" },
-//       ],
-//       model: "gpt-3.5-turbo",
-//     }),
-//   });
+// api.js
+const apiURL = import.meta.env.VITE_REACT_API_URL;
+const apiKey = import.meta.env.VITE_REACT_API_KEY;
+const apiOrg = import.meta.env.VITE_REACT_API_ORG;
+const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
-//   if (!response.ok) {
-//     throw {
-//       message: "Failed to fetch vans",
-//       statusText: res.statusText,
-//       status: res.status,
-//     };
-//   }
-//   const data = await response.json();
-//   const message = data.choices[0]?.message?.content || "";
-//   // setResponse(message.replace("AI:", "").trim());
-//   return message.replace("AI:", "").trim();
-// }
+export async function fetchChatGPTResponse(messages) {
+  try {
+    const response = await fetch(`${apiURL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+        organization: `${apiOrg}`,
+      },
+      body: JSON.stringify({
+        messages: [
+          {
+            role: "system",
+            content:
+              "You: Show me a recipe for " +
+              items.join(", ") +
+              " only. Strictly in markdown format.",
+          },
+          { role: "user", content: messages[0] },
+        ],
+        model: `${apiModel}`,
+      }),
+    });
+
+    const data = await response.json();
+    const message = data.choices[0]?.message?.content || "";
+    return message.replace("AI:", "").trim();
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function loginUser(creds) {
+  const res = await fetch("/api/login",
+      { method: "post", body: JSON.stringify(creds) }
+  )
+  const data = await res.json()
+
+  if (!res.ok) {
+      throw {
+          message: data.message,
+          statusText: res.statusText,
+          status: res.status
+      }
+  }
+
+  return data
+}

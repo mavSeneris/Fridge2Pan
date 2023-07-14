@@ -13,7 +13,7 @@ export default function Fridge() {
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
-  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
   function handleInputUpdate(event) {
     const rawInput = event.target.value;
@@ -69,6 +69,7 @@ export default function Fridge() {
   const fetchChatGPTResponse = async (messages) => {
     try {
       setLoading(true);
+
       const response = await fetch(`${apiURL}`, {
         method: "POST",
         headers: {
@@ -125,7 +126,6 @@ export default function Fridge() {
     <div className="submit-wrapper">
       <div className="fridge-list-card">
         <h3 className="fridge-list__title">
-          {/* *****Mav***** */}
           {!response ? "Ingredients" : "Recipe:"}
         </h3>
         {!response ? (
@@ -133,19 +133,9 @@ export default function Fridge() {
         ) : (
           <div className="recipe">
             {/* <p className="recipe-content">{response}</p> */}
-            <MarkdownView
-              className="markdown-component"
-              markdown={response}
-              // options={{
-              //   tables: true,
-              //   emoji: true,
-              //   tasklists: true,
-              //   simpleLineBreaks: true,
-              // }}
-            />
+            <MarkdownView className="markdown-component" markdown={response} />
           </div>
         )}
-        {/* *****changes ends here***** */}
       </div>
 
       <div className="fridge-card-controls">
@@ -239,7 +229,6 @@ export default function Fridge() {
           </div>
         </form>
       </div>
-      {/* <h1>Secret key: {import.meta.env.VITE_OPENAI_KEY}</h1> */}
     </section>
   );
 }

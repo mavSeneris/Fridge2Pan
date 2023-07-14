@@ -51,6 +51,13 @@ export default function Header() {
         >
           Search-Recipes
         </NavLink>
+        <NavLink
+          to="Login"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={handleClick}
+        >
+          Login
+        </NavLink>
       </nav>
       
       {/*--- BURGER MENU ---*/}
@@ -89,6 +96,13 @@ export default function Header() {
           >
             Search-Recipes
           </NavLink>
+          <NavLink
+          to="Login"
+          style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
+          onClick={handleClick}
+        >
+          Login
+        </NavLink>
         </div>
       </div>
       {/* --------- */}

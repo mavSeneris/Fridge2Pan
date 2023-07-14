@@ -522,3 +522,55 @@ nav {
 .markdown-component {
   white-space: pre-wrap;
 }
+
+/* Register Page */
+.login-container,
+.register-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  height: calc(100vh - 150px);
+  /* justify-content: space; */
+}
+
+.login-form,
+.register-form {
+  /* width: 90%; */
+  height: 50%;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  /* align-items: center; */
+}
+
+.login-form > input,
+.register-form > input {
+  /* border: none; */
+  height: 50px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.login-button,
+.register-button {
+  width: 50%;
+  align-self: center;
+}
+
+.login-container > p ,
+.register-container > p{
+  font-weight: 600;
+}
+
+.login-container > p > a,
+.register-container > p > a {
+  text-decoration: underline;
+  color: #f55742;
+  font-weight: 600;
+}

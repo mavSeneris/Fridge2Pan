@@ -11,7 +11,7 @@ export default function Meal() {
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
-  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
   const handleNavigateBack = () => {
     navigateBack(-1); // Navigate back to the previous link
@@ -21,10 +21,12 @@ export default function Meal() {
     async function fetchData() {
       try {
         setLoading(true);
+
         const messages = [
           {
             role: "system",
-            content: "You: Give me a random recipe for this time of day day strictly in markdown format.",
+            content:
+              "You: Give me a random recipe for this time of day day strictly in markdown format.",
           },
           {
             role: "user",
@@ -32,21 +34,20 @@ export default function Meal() {
               "You: Give me a random recipe for this time of day strictly in markdown format.",
           },
         ];
-        const response = await fetch(
-          `${apiURL}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${apiKey}`,
-              organization: `${apiOrg}`,
-            },
-            body: JSON.stringify({
-              messages: messages,
-              model: `${apiModel}`,
-            }),
-          }
-        );
+
+        const response = await fetch(`${apiURL}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+            organization: `${apiOrg}`,
+          },
+          body: JSON.stringify({
+            messages: messages,
+            model: `${apiModel}`,
+          }),
+        });
+
         const data = await response.json();
         console.log(data.choices[0].message.content);
         setResponse(data.choices[0].message.content);
@@ -56,7 +57,9 @@ export default function Meal() {
         setLoading(false);
       }
     }
+
     fetchData();
+
   }, []);
 
   if (loading) {
@@ -98,15 +101,7 @@ export default function Meal() {
           </span>
           <h3>Try this one!</h3>
           <div className="meal-response">
-            <MarkdownView
-              className="markdown-component"
-              markdown={response}
-              options={{
-                tables: true,
-                emoji: true,
-              }}
-            />
-            {/* <p>{response}</p> */}
+            <MarkdownView className="markdown-component" markdown={response} options={{tasklists: true}} />
           </div>
         </div>
       )}
