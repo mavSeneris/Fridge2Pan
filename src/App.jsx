@@ -12,6 +12,7 @@ import Search from "./pages/Search";
 import Meal from "./pages/Meal";
 import Login, {action as loginAction} from "./pages/Login";
 import Register, {action as registerAction} from "./pages/Register";
+import SavedRecipe from "./pages/SavedRecipe";
 
 const route = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout/>}>
@@ -21,6 +22,7 @@ const route = createBrowserRouter(createRoutesFromElements(
     <Route path="meal" element={<Meal/>}/>
     <Route path="login" element={<Login/>} action={loginAction}/>
     <Route path="register" element={<Register/>} action={registerAction}/>
+    <Route path="saved-recipes" element={<SavedRecipe/>}/>
   </Route>
 ))
 

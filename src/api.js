@@ -1,40 +1,27 @@
 // api.js
+import { initializeApp } from "firebase/app";
+import {getAuth} from "firebase/auth"
+
 const apiURL = import.meta.env.VITE_REACT_API_URL;
 const apiKey = import.meta.env.VITE_REACT_API_KEY;
 const apiOrg = import.meta.env.VITE_REACT_API_ORG;
 const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
-export async function fetchChatGPTResponse(messages) {
-  try {
-    const response = await fetch(`${apiURL}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-        organization: `${apiOrg}`,
-      },
-      body: JSON.stringify({
-        messages: [
-          {
-            role: "system",
-            content:
-              "You: Show me a recipe for " +
-              items.join(", ") +
-              " only. Strictly in markdown format.",
-          },
-          { role: "user", content: messages[0] },
-        ],
-        model: `${apiModel}`,
-      }),
-    });
+const fbKey = import.meta.env.VITE_REACT_FIREBASE_KEY;
+const appID = import.meta.env.VITE_REACT_FIREBASE_APPID;
 
-    const data = await response.json();
-    const message = data.choices[0]?.message?.content || "";
-    return message.replace("AI:", "").trim();
-  } catch (error) {
-    throw error;
-  }
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyAJp-B5VI0TpypfrhswuFmUDRnw8agPgBA",
+  authDomain: "veronica-93c5d.firebaseapp.com",
+  projectId: "veronica-93c5d",
+  storageBucket: "veronica-93c5d.appspot.com",
+  messagingSenderId: "713722133048",
+  appId: {appID}
+};
+
+// Initialize Firebase
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth()
 
 export async function loginUser(creds) {
   const res = await fetch("/api/login",

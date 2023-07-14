@@ -5,9 +5,11 @@ import {
   redirect,
   useActionData,
   useNavigation,
-  Link
+  Link,
 } from "react-router-dom";
-import { loginUser } from "../api";
+// import { loginUser } from "../api";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../api";
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -17,14 +19,20 @@ export async function action({ request }) {
     new URL(request.url).searchParams.get("redirectTo") || "/fridge";
   try {
     // const data = await loginUser({ email, password });
-    const data = { email, password };
-    console.log(data);
+    createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user)
+      }
+    );
     localStorage.setItem("loggedin", true);
     return redirect(pathname);
   } catch (err) {
     return err.message;
   }
 }
+
 export default function Register() {
   const errorMessage = useActionData();
   const message = useLoaderData();
@@ -47,7 +55,9 @@ export default function Register() {
           {navigation.state === "submitting" ? "Logging in..." : "Submit"}
         </button>
       </Form>
-      <p>Registered? login <Link to="/login">here</Link>.</p>
+      <p>
+        Registered? login <Link to="/login">here</Link>.
+      </p>
     </div>
   );
 }
