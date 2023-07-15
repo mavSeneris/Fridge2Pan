@@ -8,8 +8,10 @@ import {
   Link,
 } from "react-router-dom";
 // import { loginUser } from "../api";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import {getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../firebase";
+
+const auth = getAuth()
 
 export async function action({ request }) {
     const formData = await request.formData();

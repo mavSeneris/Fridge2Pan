@@ -6,42 +6,48 @@ import {
   useActionData,
   useNavigation,
   Link,
-  useLocation
+  useLocation,
 } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../firebase";
+
+const auth = getAuth()
 
 export async function action({ request }) {
-    const formData = await request.formData();
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const pathname =
-      new URL(request.url).searchParams.get("redirectTo") || "/saved-recipes";
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log("Successfully logged in!");
-      localStorage.setItem("loggedin", true);
-      return redirect(pathname);
-    } catch (err) {
-      const errorCode = err.code;
-      const errorMessage = err.message;
-      if(errorMessage === "Firebase: Error (auth/user-not-found)."){
-        return "User not found :("
-      }else if(errorMessage === "Firebase: Error (auth/wrong-password)."){
-        return "Wrong username or password."
-      }
-      console.log(errorMessage);
-      return err.message;
+  const formData = await request.formData();
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const pathname =
+    new URL(request.url).searchParams.get("redirectTo") || "/saved-recipes";
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+    console.log("Successfully logged in!");
+    localStorage.setItem("loggedin", true);
+    return redirect(pathname);
+  } catch (err) {
+    const errorCode = err.code;
+    const errorMessage = err.message;
+    if (errorMessage === "Firebase: Error (auth/user-not-found).") {
+      return "User not found :(";
+    } else if (errorMessage === "Firebase: Error (auth/wrong-password).") {
+      return "Wrong username or password.";
     }
+    console.log(errorMessage);
+    return err.message;
   }
+}
 
 export default function Login() {
   const errorMessage = useActionData();
   const message = useLoaderData();
   const navigation = useNavigation();
-  const location = useLocation()
-  const authMessage = location.search.slice(9).replace(/%20/g, " ") 
+  const location = useLocation();
+  const authMessage = location.search.slice(9).replace(/%20/g, " ");
 
   return (
     <div className="login-container">
