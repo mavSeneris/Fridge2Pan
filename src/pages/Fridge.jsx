@@ -14,7 +14,7 @@ export default function Fridge() {
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
-  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
   function handleInputUpdate(event) {
     const rawInput = event.target.value;
@@ -71,6 +71,7 @@ export default function Fridge() {
   const fetchChatGPTResponse = async (messages) => {
     try {
       setLoading(true);
+
       const response = await fetch(`${apiURL}`, {
         method: "POST",
         headers: {
