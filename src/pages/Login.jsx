@@ -8,7 +8,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
 
 export async function action({ request }) {
@@ -23,6 +23,7 @@ export async function action({ request }) {
       email,
       password
     );
+
     const user = userCredential.user;
     console.log("Successfully logged in!");
     localStorage.setItem("loggedin", true);
