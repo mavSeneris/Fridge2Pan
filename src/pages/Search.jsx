@@ -16,6 +16,10 @@ export default function Search() {
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
   const apiModel = import.meta.env.VITE_REACT_API_MODEL
 
+  function back(){
+    setError(false)
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     const messages = [
@@ -60,11 +64,11 @@ export default function Search() {
     setInputVal(userInput);
   }
   if (loading) {
-    return <ContentLoader fridgeView={false} isLoading={true}/>
+    return <ContentLoader back={back}  fridgeView={false} isLoading={true}/>
   }
 
   if (error){
-    return <ContentLoader fridgeView={false} isLoading={false}/>
+    return <ContentLoader back={back} fridgeView={false} isLoading={false}/>
   }
 
   return (

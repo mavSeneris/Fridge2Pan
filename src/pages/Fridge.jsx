@@ -57,6 +57,7 @@ export default function Fridge() {
 
   function back() {
     setResponse("");
+    setError(false)
   }
 
   const handleKeyDown = (event) => {
@@ -180,12 +181,13 @@ export default function Fridge() {
     </div>
   );
 
+
   if (loading) {
-    return <ContentLoader fridgeView={true} isLoading={true}/>
+    return <ContentLoader back={back} fridgeView={true} isLoading={true}/>
   }
 
   if (error){
-    return <ContentLoader fridgeView={true} isLoading={false}/>
+    return <ContentLoader back={back} fridgeView={true} isLoading={false}/>
   }
 
   return (
