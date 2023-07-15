@@ -59,6 +59,10 @@ export default function Search() {
     setInputVal(userInput);
   }
 
+  function saveRecipe(){
+    
+  }
+
   if (loading) {
     return (
       <div className="loading-card">
