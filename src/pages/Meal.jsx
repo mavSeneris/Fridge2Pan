@@ -59,7 +59,6 @@ export default function Meal() {
     }
 
     fetchData();
-
   }, []);
 
   if (loading) {
@@ -101,7 +100,12 @@ export default function Meal() {
           </span>
           <h3>Try this one!</h3>
           <div className="meal-response">
-            <MarkdownView className="markdown-component" markdown={response} options={{tasklists: true}} />
+            <button className="save-recipe-btn">save</button>
+            <MarkdownView
+              className="markdown-component"
+              markdown={response}
+              options={{ tasklists: true }}
+            />
           </div>
         </div>
       )}

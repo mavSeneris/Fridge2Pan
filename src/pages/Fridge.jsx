@@ -133,6 +133,7 @@ export default function Fridge() {
         ) : (
           <div className="recipe">
             {/* <p className="recipe-content">{response}</p> */}
+            <button className="save-recipe-btn">save</button>
             <MarkdownView className="markdown-component" markdown={response} />
           </div>
         )}

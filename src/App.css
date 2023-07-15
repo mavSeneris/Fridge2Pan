@@ -507,7 +507,9 @@ nav {
 }
 
 .meal-response {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .meal-back-to-home {
@@ -517,6 +519,9 @@ nav {
 .recipe {
   padding: 20px;
   white-space: pre-wrap;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .markdown-component {
@@ -539,12 +544,10 @@ nav {
   /* justify-content: space; */
 }
 
-
 .login-container > h1,
-.register-container > h1{
+.register-container > h1 {
   color: #f55742;
 }
-
 
 .login-form,
 .register-form {
@@ -575,8 +578,8 @@ nav {
   box-shadow: -5px 5px 2px 1px rgba(31, 31, 252, 0.219);
 }
 
-.login-container > p ,
-.register-container > p{
+.login-container > p,
+.register-container > p {
   font-weight: 600;
 }
 
@@ -587,13 +590,12 @@ nav {
   font-weight: 600;
 }
 
-
-.red{
+.red {
   color: red;
 }
 
 /* Temporary Styles */
-.saved-recipe{
+.saved-recipe {
   width: 90%;
   height: calc(100vh - 150px);
   display: flex;
@@ -602,4 +604,9 @@ nav {
   margin: 10px;
   border: 1px solid black;
   border-radius: 10px;
+}
+
+.save-recipe-btn{
+  width: 20%;
+  align-self: self-end;
 }

@@ -107,6 +107,7 @@ export default function Search() {
             {recipe && (
               <div className="recipe-card">
                 {/* <h3>Recipe for {dish}:</h3> */}
+                <button className="save-recipe-btn">save</button>
                 <MarkdownView
                   className="markdown-component"
                   markdown={recipe}
