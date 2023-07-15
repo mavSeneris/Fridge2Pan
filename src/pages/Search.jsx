@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EmptyState from "../components/EmptyState";
+import ContentLoader from "../components/contentLoader";
 import MarkdownView from "react-showdown";
 
 export default function Search() {
@@ -14,6 +15,10 @@ export default function Search() {
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
   const apiModel = import.meta.env.VITE_REACT_API_MODEL;
+
+  function back(){
+    setError(false)
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -58,36 +63,12 @@ export default function Search() {
     const userInput = event.target.value;
     setInputVal(userInput);
   }
-
   if (loading) {
-    return (
-      <div className="loading-card">
-        <div className="loading-text">
-          <img
-            src={
-              "https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f602/u1f602_u1f957.png"
-            }
-          />
-          <h2>Searching Recipe...</h2>
-        </div>
-      </div>
-    );
+    return <ContentLoader back={back}  fridgeView={false} isLoading={true}/>
   }
 
-  if (error) {
-    return (
-      <div className="error-card">
-        <div className="error-text">
-          <img
-            src={
-              "https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f97a/u1f97a_u1f957.png"
-            }
-          />
-          {/* <h3>There was an error: {error.message}</h3>; */}
-          <h3>Aww... No recipe found :( </h3>
-        </div>
-      </div>
-    );
+  if (error){
+    return <ContentLoader back={back} fridgeView={false} isLoading={false}/>
   }
 
   return (
