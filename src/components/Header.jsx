@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import {getAuth, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
-
-// const auth = getAuth()
-
 
 export default function Header() {
   const [isChecked, setIsChecked] = useState(false);

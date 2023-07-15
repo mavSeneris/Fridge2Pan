@@ -8,10 +8,8 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "../firebase";
-
-const auth = getAuth()
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 export async function action({ request }) {
   const formData = await request.formData();
