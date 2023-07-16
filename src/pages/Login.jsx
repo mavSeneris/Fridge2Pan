@@ -9,6 +9,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { AuthContext } from "../context/authContext";
 import { auth } from "../firebase";
 
 export async function action({ request }) {
@@ -16,7 +17,7 @@ export async function action({ request }) {
   const email = formData.get("email");
   const password = formData.get("password");
   const pathname =
-    new URL(request.url).searchParams.get("redirectTo") || "/saved-recipes";
+    new URL(request.url).searchParams.get("redirectTo") || "/";
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -26,7 +27,6 @@ export async function action({ request }) {
 
     const user = userCredential.user;
     console.log("Successfully logged in!");
-    // localStorage.setItem("loggedin", true);
     return redirect(pathname);
   } catch (err) {
     const errorCode = err.code;
@@ -47,6 +47,9 @@ export default function Login() {
   const navigation = useNavigation();
   const location = useLocation();
   const authMessage = location.search.slice(9).replace(/%20/g, " ");
+  const currentUser = useContext(AuthContext)
+
+  console.log(currentUser)
 
   return (
     <div className="login-container">

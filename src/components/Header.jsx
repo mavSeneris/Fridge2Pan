@@ -6,7 +6,6 @@ import { auth } from "../firebase";
 
 export default function Header() {
   const [isChecked, setIsChecked] = useState(false);
-  const isLoggedIn = localStorage.getItem("loggedin");
   const { currentUser } = useContext(AuthContext);
 
   const activeStyles = {
@@ -30,23 +29,20 @@ export default function Header() {
   };
 
   function logOut() {
-    // localStorage.removeItem("loggedin");
-    // localStorage.setItem("loggedin", "false");
     signOut(auth)
       .then(() => {
         console.log("Logged out!");
         setIsChecked(false);
       })
       .catch((error) => {
-        // An error happened.
+        console.log(error)
       });
   }
 
   return (
     <header>
-      {/* <h1 className='main-logo'>Fridge2Pan 🥑</h1> */}
       <Link to="/">
-        <h1 className="main-logo">Fridge2Pan 🥦</h1>
+        <h1 className="main-logo">Fridge2Pan 🥑</h1>
       </Link>
 
       <nav className="nav-menu">
