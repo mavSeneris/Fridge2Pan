@@ -12,7 +12,8 @@ import Search from "./pages/Search";
 import Meal from "./pages/Meal";
 import Login, { action as loginAction } from "./pages/Login";
 import Register, { action as registerAction } from "./pages/Register";
-import SavedRecipe from "./pages/SavedRecipe";
+import SavedRecipes from "./pages/SavedRecipes";
+import SavedRecipeDetail from "./pages/SavedRecipeDetail";
 import AuthRequired from "./components/AuthRequired";
 
 const route = createBrowserRouter(
@@ -27,7 +28,8 @@ const route = createBrowserRouter(
       
       {/* Protected Routes goes here: */}
       <Route element={<AuthRequired />}>
-        <Route path="saved-recipes" element={<SavedRecipe />} />
+        <Route path="saved-recipes" element={<SavedRecipes />} />
+        <Route path="saved-recipes/:id" element={<SavedRecipeDetail/>}/>
       </Route>
     </Route>
   )

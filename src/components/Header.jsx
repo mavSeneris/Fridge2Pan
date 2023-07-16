@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
+import { AuthContext } from "../context/authContext";
 import { auth } from "../firebase";
 
 export default function Header() {
   const [isChecked, setIsChecked] = useState(false);
-  const isLoggedIn = localStorage.getItem("loggedin");
+  const { currentUser } = useContext(AuthContext);
 
   const activeStyles = {
     fontWeight: "bold",
@@ -28,23 +29,20 @@ export default function Header() {
   };
 
   function logOut() {
-    localStorage.removeItem("loggedin");
-    // localStorage.setItem("loggedin", "false");
     signOut(auth)
       .then(() => {
         console.log("Logged out!");
         setIsChecked(false);
       })
       .catch((error) => {
-        // An error happened.
+        console.log(error)
       });
   }
 
   return (
     <header>
-      {/* <h1 className='main-logo'>Fridge2Pan 🥑</h1> */}
       <Link to="/">
-        <h1 className="main-logo">Fridge2Pan 🥦</h1>
+        <h1 className="main-logo">Fridge2Pan 🥑</h1>
       </Link>
 
       <nav className="nav-menu">
@@ -76,7 +74,7 @@ export default function Header() {
         >
           Saved Recipes
         </NavLink>
-        {!isLoggedIn ? (
+        {!currentUser ? (
           <NavLink
             to="login"
             style={({ isActive }) => (isActive ? activeStyles : null)}
@@ -138,7 +136,7 @@ export default function Header() {
           >
             Saved Recipes
           </NavLink>
-          {!isLoggedIn ? (
+          {!currentUser ? (
             <NavLink
               to="login"
               style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
