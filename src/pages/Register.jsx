@@ -33,7 +33,7 @@ export async function action({ request }) {
       recipes: [],
     });
     console.log("Successfully logged in!");
-    localStorage.setItem("loggedin", true);
+    // localStorage.setItem("loggedin", true);
     return redirect(pathname);
   } catch (err) {
     const errorCode = err.code;

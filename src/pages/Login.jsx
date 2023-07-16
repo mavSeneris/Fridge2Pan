@@ -26,7 +26,7 @@ export async function action({ request }) {
 
     const user = userCredential.user;
     console.log("Successfully logged in!");
-    localStorage.setItem("loggedin", true);
+    // localStorage.setItem("loggedin", true);
     return redirect(pathname);
   } catch (err) {
     const errorCode = err.code;
