@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MarkdownView from "react-showdown";
 import EmptyState from "../components/EmptyState";
+import ContentLoader from "../components/contentLoader"
 import DeleteIcon from "../assets/DeleteIcon.svg";
 
 export default function Fridge() {
@@ -36,16 +37,16 @@ export default function Fridge() {
     }
   }
 
+  function deleteItem(item) {
+    setItems((prevItems) => prevItems.filter((prevItem) => prevItem !== item));
+  }
+
   function submit() {
     if (!response) {
       fetchChatGPTResponse(items);
     } else {
       fetchChatGPTResponse(["show me another recipe"]);
     }
-  }
-
-  function deleteItem(item) {
-    setItems((prevItems) => prevItems.filter((prevItem) => prevItem !== item));
   }
 
   function clearAll(event) {
@@ -56,6 +57,7 @@ export default function Fridge() {
 
   function back() {
     setResponse("");
+    setError(false)
   }
 
   const handleKeyDown = (event) => {
@@ -107,8 +109,6 @@ export default function Fridge() {
     submit;
   }, [items]);
 
-  console.log(response);
-
   const fridgeItems = items.map((item) => (
     <div key={item} className="fridge__items">
       {item}
@@ -122,21 +122,33 @@ export default function Fridge() {
     </div>
   ));
 
+  const fridgeList = (
+    <div className="fridge-list">{fridgeItems}</div>
+  )
+  
+  const recipe = (
+      <div className="recipe">
+      {/* <p className="recipe-content">{response}</p> */}
+        <MarkdownView
+          className="markdown-component"
+          markdown={response}
+          // options={{
+          //   tables: true,
+          //   emoji: true,
+          //   tasklists: true,
+          //   simpleLineBreaks: true,
+          // }}
+        />
+      </div>
+  )
+
   const fridgeListCard = (
     <div className="submit-wrapper">
-      <div className="fridge-list-card">
-        <h3 className="fridge-list__title">
+      <div className="fridge-card">
+        <h3 className="fridge-card__title">
           {!response ? "Ingredients" : "Recipe:"}
         </h3>
-        {!response ? (
-          <div className="fridge-list">{fridgeItems}</div>
-        ) : (
-          <div className="recipe">
-            {/* <p className="recipe-content">{response}</p> */}
-            <button className="save-recipe-btn">save</button>
-            <MarkdownView className="markdown-component" markdown={response} />
-          </div>
-        )}
+        {!response ? fridgeList : recipe}
       </div>
 
       <div className="fridge-card-controls">
@@ -170,35 +182,13 @@ export default function Fridge() {
     </div>
   );
 
+
   if (loading) {
-    return (
-      <div className="loading-card">
-        <div className="loading-text">
-          <img
-            src={
-              "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f9d0/u1f9d0_u1f336-ufe0f.png"
-            }
-          />
-          <h2>Searching Recipe...</h2>
-        </div>
-      </div>
-    );
+    return <ContentLoader back={back} fridgeView={true} isLoading={true}/>
   }
 
-  if (error) {
-    return (
-      <div className="error-card">
-        <div className="error-text">
-          <img
-            src={
-              "https://www.gstatic.com/android/keyboard/emojikitchen/20230301/u1f62d/u1f62d_u1f336-ufe0f.png"
-            }
-          />
-          {/* <h3>There was an error: {error.message}</h3>; */}
-          <h3>Aww... No recipe found :( </h3>
-        </div>
-      </div>
-    );
+  if (error){
+    return <ContentLoader back={back} fridgeView={true} isLoading={false}/>
   }
 
   return (

@@ -286,7 +286,7 @@ nav {
   justify-content: center;
 }
 
-.fridge-list-card {
+.fridge-card {
   /* MAV: */
   position: relative;
   /* changes ends here: */
@@ -304,12 +304,13 @@ nav {
   /* white-space: 'pre-wrap'; */
 }
 
-.fridge-list__title {
+.fridge-card__title {
   padding: 15px;
   /* MAV: */
   position: sticky;
   top: 0;
   background-color: #fff;
+  text-align: center;
   /* changes ends here  */
 }
 
