@@ -13,6 +13,6 @@ export default function AuthRequired({ children }) {
   if (!currentUser) {
     return <Navigate to="/login?message=You must log in first." />;
   }
-  return <Outlet />;
-  return children;
+  return <Outlet /> || children;
+  // return children;
 }

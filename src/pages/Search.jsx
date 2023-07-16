@@ -63,14 +63,13 @@ export default function Search() {
     const userInput = event.target.value;
     setInputVal(userInput);
   }
-<<<<<<< HEAD
+
 
   function saveRecipe(){
     
   }
 
-=======
->>>>>>> 7a95512e0774f1ea9118e727a5d6221a5955ea8e
+
   if (loading) {
     return <ContentLoader back={back}  fridgeView={false} isLoading={true}/>
   }

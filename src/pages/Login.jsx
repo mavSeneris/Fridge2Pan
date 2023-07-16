@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   useLoaderData,
   Form,
@@ -8,7 +8,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 
 export async function action({ request }) {
