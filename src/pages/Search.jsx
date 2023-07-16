@@ -31,7 +31,7 @@ export default function Search() {
         username: auth.currentUser.displayName,
         email: auth.currentUser.email,
         uid: auth.currentUser.uid,
-        name: dish,
+        name: dish.charAt(0).toUpperCase() + dish.slice(1),
         recipeId: nanoid(),
       };
 
@@ -42,11 +42,10 @@ export default function Search() {
         const updatedRecipes = [...existingRecipes, newRecipe];
 
         await updateDoc(recipesDocRef, { recipes: updatedRecipes });
+        navigate("/saved-recipes");
       } else {
         await setDoc(recipesDocRef, { recipes: [newRecipe] });
       }
-    } else {
-      navigate("/saved-recipes");
     }
   }
 
