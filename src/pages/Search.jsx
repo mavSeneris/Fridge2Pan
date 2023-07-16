@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import EmptyState from "../components/EmptyState";
 import ContentLoader from "../components/contentLoader";
 import MarkdownView from "react-showdown";
+import { collection, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { db, auth } from "../firebase";
+import { AuthContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
+
+const recipeRef = collection(db, "recipes");
 
 export default function Search() {
   const [inputVal, setInputVal] = useState("");
@@ -10,14 +17,41 @@ export default function Search() {
   const [response, setResponse] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
   const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
-  function back(){
-    setError(false)
+  async function saveRecipe() {
+    if (auth.currentUser) {
+      const newRecipe = {
+        recipe,
+        username: auth.currentUser.displayName,
+        email: auth.currentUser.email,
+        uid: auth.currentUser.uid,
+        name: dish,
+        recipeId: nanoid(),
+      };
+
+      const recipesDocRef = doc(recipeRef, "recipes");
+      const recipesDocSnapshot = await getDoc(recipesDocRef);
+      if (recipesDocSnapshot.exists() && recipesDocSnapshot.data().recipes) {
+        const existingRecipes = recipesDocSnapshot.data().recipes;
+        const updatedRecipes = [...existingRecipes, newRecipe];
+
+        await updateDoc(recipesDocRef, { recipes: updatedRecipes });
+      } else {
+        await setDoc(recipesDocRef, { recipes: [newRecipe] });
+      }
+    } else {
+      navigate("/saved-recipes");
+    }
+  }
+
+  function back() {
+    setError(false);
   }
 
   async function handleSubmit(event) {
@@ -64,18 +98,12 @@ export default function Search() {
     setInputVal(userInput);
   }
 
-
-  function saveRecipe(){
-    
-  }
-
-
   if (loading) {
-    return <ContentLoader back={back}  fridgeView={false} isLoading={true}/>
+    return <ContentLoader back={back} fridgeView={false} isLoading={true} />;
   }
 
-  if (error){
-    return <ContentLoader back={back} fridgeView={false} isLoading={false}/>
+  if (error) {
+    return <ContentLoader back={back} fridgeView={false} isLoading={false} />;
   }
 
   return (
@@ -95,7 +123,9 @@ export default function Search() {
             {recipe && (
               <div className="recipe-card">
                 {/* <h3>Recipe for {dish}:</h3> */}
-                <button className="save-recipe-btn">save</button>
+                <button className="save-recipe-btn" onClick={saveRecipe}>
+                  save
+                </button>
                 <MarkdownView
                   className="markdown-component"
                   markdown={recipe}
