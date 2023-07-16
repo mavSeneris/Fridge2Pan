@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { initializeApp } from "firebase/app"; 
+import { getAuth } from "firebase/auth"; 
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_FIREBASE_KEY,
@@ -8,7 +8,7 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_REACT_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_REACT_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_REACT_FIREBASE_APP_ID,
-};
+};  
 
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
+export const app = initializeApp(firebaseConfig); 
+export const auth = getAuth(); 
