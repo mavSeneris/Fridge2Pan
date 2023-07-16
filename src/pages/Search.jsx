@@ -14,7 +14,7 @@ export default function Search() {
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
-  const apiModel = import.meta.env.VITE_REACT_API_MODEL
+  const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
   function back(){
     setError(false)
@@ -88,15 +88,10 @@ export default function Search() {
             {recipe && (
               <div className="recipe-card">
                 {/* <h3>Recipe for {dish}:</h3> */}
+                <button className="save-recipe-btn">save</button>
                 <MarkdownView
                   className="markdown-component"
                   markdown={recipe}
-                  options={{
-                    simpleLineBreaks: false,
-                    commonmark: true,
-                    tasklists: true,
-                    metadata: true,
-                  }}
                 />
               </div>
             )}

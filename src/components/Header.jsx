@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
 export default function Header() {
   const [isChecked, setIsChecked] = useState(false);
+  const isLoggedIn = localStorage.getItem("loggedin");
 
   const activeStyles = {
     fontWeight: "bold",
@@ -17,17 +20,32 @@ export default function Header() {
     textDecorationColor: "#adadff",
     color: "#f55742",
     backgroundColor: "transparent",
-    background: "rgba(31, 31, 252, 0.219)"
+    background: "rgba(31, 31, 252, 0.219)",
   };
 
   const handleClick = () => {
     setIsChecked(false);
   };
 
+  function logOut() {
+    localStorage.removeItem("loggedin");
+    // localStorage.setItem("loggedin", "false");
+    signOut(auth)
+      .then(() => {
+        console.log("Logged out!");
+        setIsChecked(false);
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  }
+
   return (
     <header>
       {/* <h1 className='main-logo'>Fridge2Pan 🥑</h1> */}
-      <h1 className="main-logo">Fridge2Pan 🥦</h1>
+      <Link to="/">
+        <h1 className="main-logo">Fridge2Pan 🥦</h1>
+      </Link>
 
       <nav className="nav-menu">
         <NavLink
@@ -51,10 +69,34 @@ export default function Header() {
         >
           Search-Recipes
         </NavLink>
+        <NavLink
+          to="saved-recipes"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={handleClick}
+        >
+          Saved Recipes
+        </NavLink>
+        {!isLoggedIn ? (
+          <NavLink
+            to="login"
+            style={({ isActive }) => (isActive ? activeStyles : null)}
+            onClick={handleClick}
+          >
+            Login
+          </NavLink>
+        ) : (
+          <NavLink
+            to="login"
+            style={({ isActive }) => (isActive ? activeStyles : null)}
+            onClick={logOut}
+          >
+            Log out
+          </NavLink>
+        )}
       </nav>
-      
+
       {/*--- BURGER MENU ---*/}
-      <div className="burger-menu">
+      <nav className="burger-menu">
         <input
           type="checkbox"
           className="burger-toggle"
@@ -87,10 +129,34 @@ export default function Header() {
             style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
             onClick={handleClick}
           >
-            Search-Recipes
+            Search Recipes
           </NavLink>
+          <NavLink
+            to="saved-recipes"
+            style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
+            onClick={handleClick}
+          >
+            Saved Recipes
+          </NavLink>
+          {!isLoggedIn ? (
+            <NavLink
+              to="login"
+              style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
+              onClick={handleClick}
+            >
+              Login
+            </NavLink>
+          ) : (
+            <NavLink
+              to="login"
+              style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
+              onClick={logOut}
+            >
+              Log out
+            </NavLink>
+          )}
         </div>
-      </div>
+      </nav>
       {/* --------- */}
     </header>
   );
