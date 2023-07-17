@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../context/authContext";
 import { auth } from "../firebase";
-import {motion , animate } from "framer-motion"
+import {motion} from "framer-motion"
 
 export default function Header() {
   const [isChecked, setIsChecked] = useState(false);
@@ -18,7 +18,6 @@ export default function Header() {
   };
 
   const burgerActiveStyles = {
-    fontWeight: "bold",
     textDecorationColor: "#adadff",
     color: "#f55742",
     backgroundColor: "transparent",
