@@ -143,7 +143,6 @@ button:active {
 
 .burger-nav {
   background: #fff;
-  display: none;
   position: fixed;
   top: 85px;
   right: 0;
@@ -197,7 +196,7 @@ button:active {
   transform: rotate(-45deg) translate(1px, -9px);
 }
 
-.burger-toggle:checked ~ .burger-nav {
+/* .burger-toggle:checked ~ .burger-nav {
   display: block;
   animation: fade-in 0.5s ease-in-out forwards;
 }
@@ -210,7 +209,7 @@ button:active {
   to {
     opacity: 1;
   }
-}
+} */
 
 @media (max-width: 531px) {
   .nav-menu {
