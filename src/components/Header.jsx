@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../context/authContext";
 import { auth } from "../firebase";
+import {motion , animate } from "framer-motion"
 
 export default function Header() {
   const [isChecked, setIsChecked] = useState(false);
@@ -25,7 +26,7 @@ export default function Header() {
   };
 
   const handleClick = () => {
-    setIsChecked(false);
+    setIsChecked(!isChecked);
   };
 
   function logOut() {
@@ -94,7 +95,9 @@ export default function Header() {
       </nav>
 
       {/*--- BURGER MENU ---*/}
-      <nav className="burger-menu">
+      <nav 
+        className="burger-menu"
+      >
         <input
           type="checkbox"
           className="burger-toggle"
@@ -107,7 +110,15 @@ export default function Header() {
           <span></span>
           <span></span>
         </label>
-        <div className="burger-nav">
+        <motion.div 
+          className="burger-nav"
+          initial={{ opacity: 0,}}
+          animate={{
+            opacity: isChecked ? 1 : 0,
+            y: isChecked ? 0 : -1300
+          }}
+          transition={{ duration: 0.6 }}
+        >
           <NavLink
             to="/"
             style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
@@ -153,7 +164,7 @@ export default function Header() {
               Log out
             </NavLink>
           )}
-        </div>
+        </motion.div>
       </nav>
       {/* --------- */}
     </header>
