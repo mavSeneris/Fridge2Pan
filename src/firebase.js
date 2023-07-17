@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDdO5UNl1fLBGITW3UyQ-zeTtnpG27k5yI",
+  apiKey: import.meta.env.VITE_REACT_FIREBASE_KEY,
   authDomain: "fridge2pan.firebaseapp.com",
-  projectId: "fridge2pan",
-  storageBucket: "fridge2pan.appspot.com",
-  messagingSenderId: "344512198530",
-  appId: "1:344512198530:web:003fb194cd773af08d419b"
+  projectId: import.meta.env.VITE_REACT_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_REACT_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_REACT_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_REACT_FIREBASE_APP_ID,
 };  
 
 export const app = initializeApp(firebaseConfig);
