@@ -6,13 +6,14 @@ export default function Layout() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode(prevMode => !prevMode);
     console.log(isDarkMode)
   };
 
   return (
     <div className="site-wrapper">
-      <Header />
+      
+      <Header toggleDarkMode={toggleDarkMode}/> 
       <main>
         <Outlet context={{ isDarkMode, setIsDarkMode, toggleDarkMode }} />
       </main>

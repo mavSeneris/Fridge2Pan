@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useOutletContext } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../context/authContext";
 import { auth } from "../firebase";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 
-export default function Header() {
+export default function Header({ toggleDarkMode }) { 
   const [isChecked, setIsChecked] = useState(false);
   const { currentUser } = useContext(AuthContext);
 
@@ -35,7 +35,7 @@ export default function Header() {
         setIsChecked(false);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       });
   }
 
@@ -44,6 +44,11 @@ export default function Header() {
       <Link to="/">
         <h1 className="main-logo">Fridge2Pan 🥑</h1>
       </Link>
+
+      <label className="switch" >
+          <input type="checkbox" onClick={toggleDarkMode}/>
+          <span className="slider"></span>
+        </label>
 
       <nav className="nav-menu">
         <NavLink
@@ -91,12 +96,11 @@ export default function Header() {
             Log out
           </NavLink>
         )}
+       
       </nav>
 
       {/*--- BURGER MENU ---*/}
-      <nav 
-        className="burger-menu"
-      >
+      <nav className="burger-menu">
         <input
           type="checkbox"
           className="burger-toggle"
@@ -109,12 +113,12 @@ export default function Header() {
           <span></span>
           <span></span>
         </label>
-        <motion.div 
+        <motion.div
           className="burger-nav"
-          initial={{ opacity: 0,}}
+          initial={{ opacity: 0 }}
           animate={{
             opacity: isChecked ? 1 : 0,
-            y: isChecked ? 0 : -1300
+            y: isChecked ? 0 : -1300,
           }}
           transition={{ duration: 0.6 }}
         >
