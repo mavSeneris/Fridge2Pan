@@ -286,7 +286,6 @@ nav {
 }
 
 .form-wrap{
-  border: 1px solid orange;
   height: calc(100vh - 100px);
   width: 100%;
   position: absolute;
@@ -336,8 +335,7 @@ nav {
   width: 100%;
   display: flex;
   justify-content: center;
-  border: 2px solid salmon;
-  /* background-color: #ceafab; */
+    /* background-color: #ceafab; */
   position: absolute;
   bottom: 0;
 }
@@ -368,7 +366,6 @@ nav {
   font-size: 1rem;
   border: none;
   padding: 5px;
-  border: 1px solid magenta
 }
 
 .fridge__button--delete {
