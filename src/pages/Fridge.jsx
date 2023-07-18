@@ -218,6 +218,7 @@ export default function Fridge() {
 
         <motion.form 
           className="fridge__form"
+          onClick={toggle}
           animate={{
             opacity: toggleInput ? '1' : '0' ,
           }}
@@ -238,6 +239,7 @@ export default function Fridge() {
         </motion.form>
 
         <button
+          style={{display: toggleInput && 'none'}}
           type="button"
           onClick={toggle}
           className="fridge__button fridge__button--add"
