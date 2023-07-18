@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import MealTime from "../components/MealTime";
 import { auth } from "../firebase";
+import { useOutletContext } from "react-router-dom";
 
-export default function Home() {
+
+export default function Home({btnDarkTheme}) {
   const [displayName, setDisplayName] = useState("");
+
 
   useEffect(() => {
     if (auth.currentUser) {
@@ -28,7 +31,7 @@ export default function Home() {
           meals. Reduce food waste and improve your cooking with Fridge2Pan.
           Download now and embark on a culinary adventure!
         </p>
-        <MealTime />
+        <MealTime btnDarkTheme={btnDarkTheme}/>
       </div>
     </section>
   );

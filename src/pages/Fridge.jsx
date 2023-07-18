@@ -3,6 +3,8 @@ import MarkdownView from "react-showdown";
 import EmptyState from "../components/EmptyState";
 import ContentLoader from "../components/contentLoader"
 import DeleteIcon from "../assets/DeleteIcon.svg";
+import { useOutletContext } from 'react-router-dom'
+import {motion} from "framer-motion"
 
 export default function Fridge() {
   const [inputVal, setInputVal] = useState("");
@@ -10,11 +12,21 @@ export default function Fridge() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [toggleInput, setToggleInput] = useState(false)
+  const { isDarkMode } = useOutletContext();
+
 
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
   const apiModel = import.meta.env.VITE_REACT_API_MODEL;
+
+
+  const cardDarkTheme = {
+    boxShadow: isDarkMode && "-5px 8px 2px 1px rgba(64,68,75, 0.219)",
+    backgroundColor: isDarkMode ? "#40444b" : "#FFFFFF",
+    border: "none",
+  }
 
   function handleInputUpdate(event) {
     const rawInput = event.target.value;
@@ -22,19 +34,10 @@ export default function Fridge() {
       rawInput.charAt(0).toUpperCase() + rawInput.slice(1).toLowerCase();
     setInputVal(formattedInput);
   }
-
-  async function addItem(event) {
+  
+  function toggle(event) {
     event.preventDefault();
-    if (!inputVal) {
-      alert("Input required");
-      return;
-    } else if (items.includes(inputVal)) {
-      alert("Item already added");
-      return;
-    } else {
-      setItems((prevItems) => [...prevItems, inputVal]);
-      setInputVal("");
-    }
+    setToggleInput(prevVal => !prevVal)
   }
 
   function deleteItem(item) {
@@ -63,7 +66,16 @@ export default function Fridge() {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      addItem(event);
+      if (!inputVal) {
+        alert("Input required");
+        return;
+      } else if (items.includes(inputVal)) {
+        alert("Item already added");
+        return;
+      } else {
+        setItems((prevItems) => [...prevItems, inputVal]);
+        setInputVal("");
+      }
       setInputVal("");
     }
   };
@@ -144,14 +156,14 @@ export default function Fridge() {
 
   const fridgeListCard = (
     <div className="submit-wrapper">
-      <div className="fridge-card">
-        <h3 className="fridge-card__title">
+      <div className="fridge-card" style={cardDarkTheme}>
+        <h3 className="fridge-card__title" style={cardDarkTheme}>
           {!response ? "Ingredients" : "Recipe:"}
         </h3>
         {!response ? fridgeList : recipe}
       </div>
 
-      <div className="fridge-card-controls">
+      <div className="fridge-card-controls" style={cardDarkTheme}>
         <button
           type="button"
           onClick={submit}
@@ -200,7 +212,12 @@ export default function Fridge() {
           fridgeListCard
         )}
 
-        <form className="fridge__form">
+        <motion.form 
+          className="fridge__form"
+          animate={{
+            opacity: toggleInput ? '1' : '0' ,
+          }}
+        >
           <div className="fridge__controls">
             <input
               type="text"
@@ -210,15 +227,17 @@ export default function Fridge() {
               id="input-field"
               className="fridge__input"
             />
-            <button
-              type="button"
-              onClick={addItem}
-              className="fridge__button fridge__button--add"
-            >
-              Add
-            </button>
+
           </div>
-        </form>
+        </motion.form>
+
+        <button
+          type="button"
+          onClick={toggle}
+          className="fridge__button fridge__button--add"
+        >
+          +
+        </button>
       </div>
     </section>
   );
