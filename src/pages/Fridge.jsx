@@ -4,6 +4,7 @@ import EmptyState from "../components/EmptyState";
 import ContentLoader from "../components/contentLoader"
 import DeleteIcon from "../assets/DeleteIcon.svg";
 import { useOutletContext } from 'react-router-dom'
+import { useRef } from 'react';
 import {motion} from "framer-motion"
 
 export default function Fridge() {
@@ -11,7 +12,9 @@ export default function Fridge() {
   const [items, setItems] = useState([]);
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
+  const inputRef = useRef(null);
   const [error, setError] = useState(null);
+
   const [toggleInput, setToggleInput] = useState(false)
   const { isDarkMode } = useOutletContext();
 
@@ -37,6 +40,7 @@ export default function Fridge() {
   
   function toggle(event) {
     event.preventDefault();
+    inputRef.current.focus();
     setToggleInput(prevVal => !prevVal)
   }
 
@@ -218,14 +222,16 @@ export default function Fridge() {
             opacity: toggleInput ? '1' : '0' ,
           }}
         >
-          <div className="fridge__controls">
+          <div className="fridge__controls"
+>
             <input
               type="text"
               value={inputVal}
               onChange={handleInputUpdate}
               onKeyDown={handleKeyDown}
-              id="input-field"
               className="fridge__input"
+              ref={inputRef}
+
             />
 
           </div>
