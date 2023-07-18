@@ -681,3 +681,18 @@ nav {
   padding: 20px;
   border-radius: 10px;
 }
+
+
+.dark{
+  width: 500px;
+  height: 500px;
+  color:white;
+  background-color: #333;
+}
+
+.light{
+  width: 500px;
+  height: 500px;
+  color:#333;
+  background-color: white;
+}
