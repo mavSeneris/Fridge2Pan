@@ -5,7 +5,8 @@ import { AuthContext } from "../context/authContext";
 import { auth } from "../firebase";
 import { motion } from "framer-motion";
 
-export default function Header({ toggleDarkMode }) { 
+
+export default function Header({ toggleDarkMode, isDarkMode, darkTheme}) { 
   const [isChecked, setIsChecked] = useState(false);
   const { currentUser } = useContext(AuthContext);
 
@@ -23,6 +24,16 @@ export default function Header({ toggleDarkMode }) {
     backgroundColor: "transparent",
     background: "rgba(31, 31, 252, 0.219)",
   };
+
+  const burgerToggleDark = {
+    backgroundColor: isDarkMode && "white",
+  }
+
+  const mainLogoDark = {
+    boxShadow: isDarkMode && "-5px 8px 2px 1px rgba(64,68,75, 0.219)",
+    backgroundColor: isDarkMode && "#bd4332",
+    transition: "background 0.7s ease",
+  }
 
   const handleClick = () => {
     setIsChecked(!isChecked);
@@ -42,13 +53,13 @@ export default function Header({ toggleDarkMode }) {
   return (
     <header>
       <Link to="/">
-        <h1 className="main-logo">Fridge2Pan 🥑</h1>
+        <h1 className="main-logo" style={mainLogoDark}>Fridge2Pan 🥑</h1>
       </Link>
 
       <label className="switch" >
           <input type="checkbox" onClick={toggleDarkMode}/>
           <span className="slider"></span>
-        </label>
+      </label>
 
       <nav className="nav-menu">
         <NavLink
@@ -101,6 +112,7 @@ export default function Header({ toggleDarkMode }) {
 
       {/*--- BURGER MENU ---*/}
       <nav className="burger-menu">
+
         <input
           type="checkbox"
           className="burger-toggle"
@@ -108,10 +120,11 @@ export default function Header({ toggleDarkMode }) {
           checked={isChecked}
           onChange={() => setIsChecked(!isChecked)}
         />
+
         <label htmlFor="burger-toggle" className="burger-icon">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span style={burgerToggleDark}></span>
+          <span style={burgerToggleDark}></span>
+          <span style={burgerToggleDark}></span>
         </label>
         <motion.div
           className="burger-nav"
@@ -121,6 +134,7 @@ export default function Header({ toggleDarkMode }) {
             y: isChecked ? 0 : -1300,
           }}
           transition={{ duration: 0.6 }}
+          style={darkTheme}
         >
           <NavLink
             to="/"
