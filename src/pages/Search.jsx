@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import EmptyState from "../components/EmptyState";
 import ContentLoader from "../components/contentLoader";
 import MarkdownView from "react-showdown";
 import { collection, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
-import { AuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 

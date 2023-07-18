@@ -15,6 +15,7 @@ import Register, { action as registerAction } from "./pages/Register";
 import SavedRecipes from "./pages/SavedRecipes";
 import SavedRecipeDetail from "./pages/SavedRecipeDetail";
 import AuthRequired from "./components/AuthRequired";
+import TestDarkTheme from "./components/TestDarkTheme"
 
 const route = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const route = createBrowserRouter(
       <Route path="meal" element={<Meal />} />
       <Route path="login" element={<Login />} action={loginAction} />
       <Route path="register" element={<Register />} action={registerAction} />
+      <Route path="theme-test" element={<TestDarkTheme/>}/>//add test route
       
       {/* Protected Routes goes here: */}
       <Route element={<AuthRequired />}>
