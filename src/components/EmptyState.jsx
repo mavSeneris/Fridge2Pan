@@ -29,9 +29,7 @@ export default function EmptyState({ IngredientState, RecipeState }) {
           Add items to get started
         </p>
       )}
-      {RecipeState && (
-        <p className="empty-state__message"></p>
-      )}
+      {RecipeState && <p className="empty-state__message"></p>}
     </div>
   );
 }

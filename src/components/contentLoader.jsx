@@ -12,12 +12,19 @@ export default function contentLoader(props){
     "https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f97a/u1f97a_u1f957.png"
   ]
 
+  const loadingRow = (
+    <div class="load-row">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+   </div>
+  )
+
       const loadingState = (
         <div className="loading-card">
             <div className="loading-text">
-              <img
-                src={props.fridgeView ? fridgeLoadingImg[0] : searchLoadingImg[0]}
-              />
+              {loadingRow}
               <h2>Searching Recipe...</h2>
             </div>
           </div>
@@ -41,8 +48,8 @@ export default function contentLoader(props){
           </div>
     )
     return (
-        <div>
-            {props.isLoading ? loadingState : errorState}
-        </div>
+      <>
+       {props.isLoading ? loadingState : errorState}
+      </>
     )
 }
