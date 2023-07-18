@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MarkdownView from "react-showdown";
 import EmptyState from "../components/EmptyState";
 import ContentLoader from "../components/contentLoader"
 import DeleteIcon from "../assets/DeleteIcon.svg";
 import { useOutletContext } from 'react-router-dom'
-import {motion} from "framer-motion"
 
 export default function Fridge() {
   const [inputVal, setInputVal] = useState("");
@@ -12,7 +11,7 @@ export default function Fridge() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const inputRef = useRef(null);
   const [toggleInput, setToggleInput] = useState(false)
   const { isDarkMode } = useOutletContext();
 
@@ -39,6 +38,11 @@ export default function Fridge() {
   function toggle(event) {
     event.preventDefault();
     setToggleInput(prevVal => !prevVal)
+    if (!toggleInput) {
+      setTimeout(() => {
+        inputRef.current.focus();
+      }, 0);
+    }
   }
 
   function deleteItem(item) {
@@ -214,19 +218,17 @@ export default function Fridge() {
         )}
 
 
-
-
         <div className="form-wrap" onClick={toggle} style={{display: toggleInput ? "block" : "none"}}>
           <form className="fridge__form">
             <div className="fridge__controls">
 
               <input
+                ref={inputRef}
                 type="text"
                 value={inputVal}
                 onChange={handleInputUpdate}
                 onKeyDown={handleKeyDown}
                 className="fridge__input"
-                id="fridge-input"
               />
 
             </div>
