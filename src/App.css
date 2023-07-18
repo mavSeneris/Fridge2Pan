@@ -50,15 +50,20 @@ img {
   width: 100%;
 }
 
+/* MAIN */
+
 main {
   display: flex;
   justify-content: center;
 }
 
 section {
-  /* padding: 24px; */
   width: 100%;
 }
+
+
+/* Button Global Style */
+
 .meal-button,
 button {
   background-color: #f55742;
@@ -96,16 +101,16 @@ button:active {
   cursor: pointer;
 }
 
-/* BURGER MENU*/
+
+/* BURGER MENU */
 
 .burger-menu {
-  display: none;
-  align-items: center;
-  justify-content: center;
   width: 30px;
   height: 30px;
   padding: 0;
-  /* border: 1px solid black; */
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
 
 .burger-toggle {
@@ -113,20 +118,20 @@ button:active {
 }
 
 .burger-icon {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
   width: 30px;
   height: 20px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
 }
 
 .burger-icon span {
+  width: 25px;
+  height: 2px;
   background: #333;
   display: block;
-  height: 2px;
   position: absolute;
   transition: transform 0.3s ease-in-out;
-  width: 25px;
 }
 
 .burger-icon span:first-child {
@@ -142,23 +147,23 @@ button:active {
 }
 
 .burger-nav {
-  background: #fff;
   position: fixed;
   top: 85px;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 1;
+  background: #fff;
 }
 
 .burger-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  width: 100%;
   position: absolute;
   top: 50%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   transform: translateY(-50%);
-  width: 100%;
   text-align: center;
 }
 
@@ -180,17 +185,17 @@ button:active {
   color: #f55742;
 }
 
-/* Animation styles */
+/*---Burger Animation---*/
 
-.burger-toggle:checked ~ .burger-icon span:first-child {
+.burger-toggle:checked~.burger-icon span:first-child {
   transform: rotate(45deg) translate(5px, 13px);
 }
 
-.burger-toggle:checked ~ .burger-icon span:nth-child(2) {
+.burger-toggle:checked~.burger-icon span:nth-child(2) {
   opacity: 0;
 }
 
-.burger-toggle:checked ~ .burger-icon span:last-child {
+.burger-toggle:checked~.burger-icon span:last-child {
   transform: rotate(-45deg) translate(1px, -9px);
 }
 
@@ -205,7 +210,8 @@ button:active {
   }
 }
 
-/*  Header Component */
+/*---Header Component---*/
+
 header {
   width: 100vw;
   padding: 24px;
@@ -229,7 +235,8 @@ nav {
   font-family: "Fugaz One", cursive;
 }
 
-/* Home  Component */
+/*---Home Component---*/
+
 .hero {
   width: 100%;
   display: flex;
@@ -240,18 +247,19 @@ nav {
   margin-top: 20px;
 }
 
-.hero > p {
+.hero>p {
   width: 70%;
   line-height: 1.7;
   font-size: 1rem;
   font-weight: 500;
 }
 
-/* Fridge Component */
+/*  ---Fridge Page--- */
 
 .fridge {
   width: 100%;
-  height: calc(100vh - 94px); /* Subtract the header height */
+  height: calc(100vh - 94px);
+  /* Subtract the header height */
   display: flex;
   flex-direction: column;
 }
@@ -269,11 +277,9 @@ nav {
 }
 
 .fridge-card {
-  /* MAV: */
-  position: relative;
-  /* changes ends here: */
   width: 100%;
   max-width: 500px;
+  position: relative;
   height: calc(96vh - 200px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -281,19 +287,14 @@ nav {
   box-shadow: -5px 8px 2px 1px rgba(31, 31, 252, 0.219);
   border-radius: 10px;
   align-items: center;
-  /* text-align: center; */
-  /* padding: 20px; */
-  /* white-space: 'pre-wrap'; */
 }
 
 .fridge-card__title {
   padding: 15px;
-  /* MAV: */
   position: sticky;
   top: 0;
   background-color: #fff;
   text-align: center;
-  /* changes ends here  */
 }
 
 .fridge-list {
@@ -369,36 +370,8 @@ nav {
   width: 20px;
 }
 
-/* Empty State component */
+/* Recipe card */
 
-.empty-state {
-  height: calc(100vh - 200px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.empty-state__image {
-  max-width: 270px;
-}
-
-.empty-state__ingredients-message {
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-  padding: 5px 0px;
-}
-
-.empty-state__ingredients-message:nth-of-type(2) {
-  font-size: 0.9rem;
-}
-
-.empty-message {
-  font-weight: bolder;
-  color: #f55742;
-}
-
-/* Mav: Added style property */
 .recipe-content {
   padding: 5px 20px 20px 20px;
   text-align: left;
@@ -406,6 +379,8 @@ nav {
   font-size: 0.9rem;
   font-weight: 400;
 }
+
+/*--Content Loader Component---*/
 
 .error-card,
 .loading-card {
@@ -432,12 +407,56 @@ nav {
   gap: 20px;
 }
 
-.error-text > img,
-.loading-text > img {
+.error-text>img,
+.loading-text>img {
   width: 60%;
 }
 
-/* Search page */
+.load-row {
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+/* Loader style & animation */
+
+.load-row span {
+  display: inline-block;
+  margin: 0px 2px;
+  width: 10px;
+  height: 10px;
+  background: #f76002;
+  border-radius: 50px;
+  animation: up-down6 0.5s ease-in infinite alternate;
+}
+
+.load-row span:nth-child(2) {
+  background: #e85b04c4;
+  animation-delay: 0.16s;
+}
+
+.load-row span:nth-child(3) {
+  background: #e85b0491;
+  animation-delay: 0.32s;
+}
+
+.load-row span:nth-child(4) {
+  background: #e85b0456;
+  animation-delay: 0.48s;
+}
+
+@keyframes up-down6 {
+  0% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+/*---Search page---*/
 
 .search-wrapper {
   padding: 20px;
@@ -527,8 +546,8 @@ nav {
   /* justify-content: space; */
 }
 
-.login-container > h1,
-.register-container > h1 {
+.login-container>h1,
+.register-container>h1 {
   color: #f55742;
 }
 
@@ -544,8 +563,8 @@ nav {
   /* align-items: center; */
 }
 
-.login-form > input,
-.register-form > input {
+.login-form>input,
+.register-form>input {
   /* border: none; */
   height: 50px;
   padding: 10px;
@@ -561,13 +580,13 @@ nav {
   box-shadow: -5px 5px 2px 1px rgba(31, 31, 252, 0.219);
 }
 
-.login-container > p,
-.register-container > p {
+.login-container>p,
+.register-container>p {
   font-weight: 600;
 }
 
-.login-container > p > a,
-.register-container > p > a {
+.login-container>p>a,
+.register-container>p>a {
   text-decoration: underline;
   color: #f55742;
   font-weight: 600;
@@ -578,6 +597,7 @@ nav {
 }
 
 /* Temporary Styles */
+
 .saved-recipe {
   width: 90%;
   height: calc(100vh - 150px);
@@ -590,8 +610,9 @@ nav {
   padding: 20px;
   gap: 20px;
 }
-.save-recipe-detail-wrapper > a:hover,
-.saved-recipe > a:hover {
+
+.save-recipe-detail-wrapper>a:hover,
+.saved-recipe>a:hover {
   font-weight: 700;
   color: #f55742;
 }
@@ -631,12 +652,13 @@ nav {
   border: 2px solid #33333356;
 }
 
-.saved-recipe-card > a > h3 {
+.saved-recipe-card>a>h3 {
   font-weight: 500;
   font-size: 1.1rem;
 }
 
-.saved-recipe-card > a > h3:hover {
+
+.saved-recipe-card>a>h3:hover {
   text-decoration: underline;
   color: #f55742;
   font-weight: 700;
@@ -663,81 +685,36 @@ nav {
   border-radius: 10px;
 }
 
-.load-row {
-  width: 100px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-}
 
-.load-row span {
-  display: inline-block;
-  margin: 0px 2px;
-  width: 10px;
-  height: 10px;
-  background: #f76002;
-  border-radius: 50px;
-  animation: up-down6 0.5s ease-in infinite alternate;
-}
+/*---Empty State component---*/
 
-.load-row span:nth-child(2) {
-  background: #e85b04c4;
-  animation-delay: 0.16s;
-}
-
-.load-row span:nth-child(3) {
-  background: #e85b0491;
-  animation-delay: 0.32s;
-}
-
-.load-row span:nth-child(4) {
-  background: #e85b0456;
-  animation-delay: 0.48s;
-}
-
-@keyframes up-down6 {
-  0% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(10px);
-  }
-}
-
-/* Dark mode test component */
-.test {
-  width: 100%;
+.empty-state {
+  height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  padding: 20px;
-  margin: 20px;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
-.dark {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: calc(100vh - 300px);
-  /* Darkmode settings */
-  color: white;
-  background-color: #333;
+.empty-state__image {
+  max-width: 270px;
 }
 
-.light {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: calc(100vh - 300px);
-  /* Darkmode settings */
-  color: #333;
-  background-color: rgba(219, 74, 29, 0.637);
+.empty-state__ingredients-message {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  padding: 5px 0px;
 }
+
+.empty-state__ingredients-message:nth-of-type(2) {
+  font-size: 0.9rem;
+}
+
+.empty-message {
+  font-weight: bolder;
+  color: #f55742;
+}
+
 
 /* The switch - the box around the slider */
 .switch {
@@ -797,3 +774,4 @@ nav {
 .switch input:checked + .slider:before {
   transform: translateX(1.5em);
 }
+
