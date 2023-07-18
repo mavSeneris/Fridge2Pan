@@ -26,7 +26,7 @@ const route = createBrowserRouter(
       <Route path="meal" element={<Meal />} />
       <Route path="login" element={<Login />} action={loginAction} />
       <Route path="register" element={<Register />} action={registerAction} />
-      <Route path="theme-test" element={<TestDarkTheme/>}/>//add test route
+      <Route path="theme-test" element={<TestDarkTheme/>}/>{/*add test route*/}
       
       {/* Protected Routes goes here: */}
       <Route element={<AuthRequired />}>
