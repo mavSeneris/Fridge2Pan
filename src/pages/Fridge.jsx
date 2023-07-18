@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import MarkdownView from "react-showdown";
 import EmptyState from "../components/EmptyState";
-import ContentLoader from "../components/contentLoader"
+import ContentLoader from "../components/contentLoader";
 import DeleteIcon from "../assets/DeleteIcon.svg";
-import { useOutletContext } from 'react-router-dom'
+import { useOutletContext } from "react-router-dom";
+import { motion } from "framer-motion"
 
 export default function Fridge() {
   const [inputVal, setInputVal] = useState("");
@@ -12,21 +13,19 @@ export default function Fridge() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const inputRef = useRef(null);
-  const [toggleInput, setToggleInput] = useState(false)
+  const [toggleInput, setToggleInput] = useState(false);
   const { isDarkMode } = useOutletContext();
-
 
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
   const apiOrg = import.meta.env.VITE_REACT_API_ORG;
   const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
-
   const cardDarkTheme = {
     boxShadow: isDarkMode && "-5px 8px 2px 1px rgba(64,68,75, 0.219)",
     backgroundColor: isDarkMode ? "#40444b" : "#FFFFFF",
     border: "none",
-  }
+  };
 
   function handleInputUpdate(event) {
     const rawInput = event.target.value;
@@ -34,10 +33,10 @@ export default function Fridge() {
       rawInput.charAt(0).toUpperCase() + rawInput.slice(1).toLowerCase();
     setInputVal(formattedInput);
   }
-  
+
   function toggle(event) {
     event.preventDefault();
-    setToggleInput(prevVal => !prevVal)
+    setToggleInput((prevVal) => !prevVal);
     if (!toggleInput) {
       setTimeout(() => {
         inputRef.current.focus();
@@ -65,7 +64,7 @@ export default function Fridge() {
 
   function back() {
     setResponse("");
-    setError(false)
+    setError(false);
   }
 
   const handleKeyDown = (event) => {
@@ -139,25 +138,23 @@ export default function Fridge() {
     </div>
   ));
 
-  const fridgeList = (
-    <div className="fridge-list">{fridgeItems}</div>
-  )
-  
+  const fridgeList = <div className="fridge-list">{fridgeItems}</div>;
+
   const recipe = (
-      <div className="recipe">
+    <div className="recipe">
       {/* <p className="recipe-content">{response}</p> */}
-        <MarkdownView
-          className="markdown-component"
-          markdown={response}
-          // options={{
-          //   tables: true,
-          //   emoji: true,
-          //   tasklists: true,
-          //   simpleLineBreaks: true,
-          // }}
-        />
-      </div>
-  )
+      <MarkdownView
+        className="markdown-component"
+        markdown={response}
+        // options={{
+        //   tables: true,
+        //   emoji: true,
+        //   tasklists: true,
+        //   simpleLineBreaks: true,
+        // }}
+      />
+    </div>
+  );
 
   const fridgeListCard = (
     <div className="submit-wrapper">
@@ -199,13 +196,12 @@ export default function Fridge() {
     </div>
   );
 
-
   if (loading) {
-    return <ContentLoader back={back} fridgeView={true} isLoading={true}/>
+    return <ContentLoader back={back} fridgeView={true} isLoading={true} />;
   }
 
-  if (error){
-    return <ContentLoader back={back} fridgeView={true} isLoading={false}/>
+  if (error) {
+    return <ContentLoader back={back} fridgeView={true} isLoading={false} />;
   }
 
   return (
@@ -217,11 +213,23 @@ export default function Fridge() {
           fridgeListCard
         )}
 
+        <motion.div
+          className="form-wrap"
+          onClick={toggle}
+          initial={{
 
-        <div className="form-wrap" onClick={toggle} style={{display: toggleInput ? "block" : "none"}}>
+          }}
+          animate={{
+            opacity: toggleInput ? 1 : 0,
+            backgroundColor: toggleInput && "rgba(0, 0, 0, 0.358)",
+          }}
+          transition={{
+            duration: 0.12
+          }}
+          style={{ display: toggleInput ? "block" : "none" }}
+        >
           <form className="fridge__form">
             <div className="fridge__controls">
-
               <input
                 ref={inputRef}
                 type="text"
@@ -230,21 +238,18 @@ export default function Fridge() {
                 onKeyDown={handleKeyDown}
                 className="fridge__input"
               />
-
             </div>
           </form>
-        </div>
-        
+        </motion.div>
 
-
-          <button
-            style={{display: toggleInput && 'none'}}
-            type="button"
-            onClick={toggle}
-            className="fridge__button fridge__button--add"
-          >
-            +
-          </button>
+        <button
+          style={{ display: toggleInput && "none" }}
+          type="button"
+          onClick={toggle}
+          className="fridge__button fridge__button--add"
+        >
+          +
+        </button>
       </div>
     </section>
   );
