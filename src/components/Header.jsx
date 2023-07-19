@@ -56,11 +56,6 @@ export default function Header({ toggleDarkMode, isDarkMode, darkTheme}) {
         <h1 className="main-logo" style={mainLogoDark}>Fridge2Pan 🥑</h1>
       </Link>
 
-      <label className="switch" >
-          <input type="checkbox" onClick={toggleDarkMode}/>
-          <span className="slider"></span>
-      </label>
-
       <nav className="nav-menu">
         <NavLink
           to="/"
@@ -136,6 +131,12 @@ export default function Header({ toggleDarkMode, isDarkMode, darkTheme}) {
           transition={{ duration: 0.6 }}
           style={darkTheme}
         >
+              
+          <label className="switch" >
+              <input type="checkbox" onClick={toggleDarkMode}/>
+              <span className="slider"></span>
+          </label>
+
           <NavLink
             to="/"
             style={({ isActive }) => (isActive ? burgerActiveStyles : null)}
