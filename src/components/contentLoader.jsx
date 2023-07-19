@@ -1,7 +1,16 @@
 import React from "react";
+import { useOutletContext } from "react-router-dom";
 
 export default function contentLoader(props) {
+  const { isDarkMode } = useOutletContext();
+
   console.log(props);
+
+  const cardDarkTheme = {
+    boxShadow: isDarkMode && "-5px 8px 2px 1px rgba(64,68,75, 0.219)",
+    backgroundColor: isDarkMode ? "#40444b" : "#FFFFFF",
+    border: isDarkMode && "none",
+  };
 
   const loadingRow = (
     <div class="load-row">
@@ -14,7 +23,7 @@ export default function contentLoader(props) {
 
   const loadingState = (
     <div className="loading-card">
-      <div className="loading-text">
+      <div className="loading-text"  style={cardDarkTheme}>
         {loadingRow}
         <h2>Searching Recipe...</h2>
       </div>
@@ -22,8 +31,8 @@ export default function contentLoader(props) {
   );
 
   const errorState = (
-    <div className="error-card">
-      <div className="error-text">
+    <div className="error-card" >
+      <div className="error-text" style={cardDarkTheme}>
         <h3>Aww... No recipe found :( </h3>
         <button className="fridge__button" onClick={props.back}>
           Back
