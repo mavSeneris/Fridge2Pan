@@ -20,9 +20,9 @@ export default function Header({ toggleDarkMode, isDarkMode, darkTheme}) {
 
   const burgerActiveStyles = {
     textDecorationColor: "#adadff",
-    color: "#f55742",
+    color:"#f55742",
     backgroundColor: "transparent",
-    background: "rgba(31, 31, 252, 0.219)",
+    textDecoration: "underline"
   };
 
   const burgerToggleDark = {
@@ -31,8 +31,6 @@ export default function Header({ toggleDarkMode, isDarkMode, darkTheme}) {
 
   const mainLogoDark = {
     boxShadow: isDarkMode && "-5px 8px 2px 1px rgba(64,68,75, 0.219)",
-    backgroundColor: isDarkMode && "#bd4332",
-    transition: "background 0.7s ease",
   }
 
   const handleClick = () => {
