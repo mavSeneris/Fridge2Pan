@@ -362,8 +362,8 @@ nav {
 
 .fridge__input {
   width: 100%;
-  height: 35px;
-  font-size: 1rem;
+  height: 50px;
+  font-size: 1.3rem;
   border: none;
   padding: 5px;
 }
@@ -378,12 +378,19 @@ nav {
 }
 
 .fridge__button--add{
-  width: 60px;
-  height: 60px;
+  width: 63px;
+  height: 63px;
   border-radius: 100%;
   position: absolute;
-  bottom: 40px;
-  right: 40px;
+  bottom: 60px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fridge__button-img{
+  width: 25px;
 }
 
 .delete-icon {

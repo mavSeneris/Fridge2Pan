@@ -5,6 +5,7 @@ import ContentLoader from "../components/contentLoader";
 import DeleteIcon from "../assets/DeleteIcon.svg";
 import { useOutletContext } from "react-router-dom";
 import { motion } from "framer-motion"
+import addIcon from "../assets/plus.svg"
 
 export default function Fridge() {
   const [inputVal, setInputVal] = useState("");
@@ -24,7 +25,7 @@ export default function Fridge() {
   const cardDarkTheme = {
     boxShadow: isDarkMode && "-5px 8px 2px 1px rgba(64,68,75, 0.219)",
     backgroundColor: isDarkMode ? "#40444b" : "#FFFFFF",
-    border: "none",
+    border: "nonse",
   };
 
   function handleInputUpdate(event) {
@@ -248,7 +249,7 @@ export default function Fridge() {
           onClick={toggle}
           className="fridge__button fridge__button--add"
         >
-          +
+          <img className="fridge__button-img" src={addIcon}/>
         </button>
       </div>
     </section>
