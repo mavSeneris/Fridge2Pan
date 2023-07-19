@@ -267,6 +267,7 @@ nav {
   width: 100%;
   height: calc(100vh - 94px);
   /* Subtract the header height */
+  min-height: 600px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -389,6 +390,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .fridge__button-img{
@@ -415,6 +417,7 @@ nav {
 .loading-card {
   padding: 20px;
   width: 100%;
+  height: calc(100vh - 94px);
 }
 
 .error-text,
@@ -423,6 +426,7 @@ nav {
   max-width: 500px;
   height: calc(96vh - 200px);
   /* height: 80vh; */
+  min-height: 500px;
   overflow-y: auto;
   overflow-x: hidden;
   border: 1px solid rgb(187, 187, 187);
@@ -718,13 +722,12 @@ nav {
 /*---Empty State component---*/
 
 .empty-state {
-  height: calc(100vh - 200px);
-  min-height: 600px;
+  height: calc(100vh);
+  min-height: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid black
 }
 
 .empty-state__image {
