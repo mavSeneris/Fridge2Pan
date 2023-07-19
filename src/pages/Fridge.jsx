@@ -25,7 +25,7 @@ export default function Fridge() {
   const cardDarkTheme = {
     boxShadow: isDarkMode && "-5px 8px 2px 1px rgba(64,68,75, 0.219)",
     backgroundColor: isDarkMode ? "#40444b" : "#FFFFFF",
-    border: "nonse",
+    border: isDarkMode && "none",
   };
 
   function handleInputUpdate(event) {
