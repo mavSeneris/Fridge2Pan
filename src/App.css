@@ -418,6 +418,8 @@ nav {
   padding: 20px;
   width: 100%;
   height: calc(100vh - 94px);
+  display: flex;
+  align-items: centergit;
 }
 
 .error-text,
@@ -516,6 +518,11 @@ nav {
   border: 1px solid rgb(168, 168, 168);
   padding: 0 10px;
   font-size: 1rem;
+}
+
+.search-form__input:focus{
+  border: none;
+
 }
 
 .recipe-card {
