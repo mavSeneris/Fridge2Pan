@@ -14,7 +14,7 @@ export default function EmptyState({ IngredientState, RecipeState }) {
       )}
       {RecipeState && (
         <img
-          src="https://www.gstatic.com/android/keyboard/emojikitchen/20220815/u1f60e/u1f60e_u1f957.png"
+          src={RecipeImage}
           alt="Recipe"
           className="empty-state__image empty-state__image--recipe"
         />
