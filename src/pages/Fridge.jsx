@@ -222,7 +222,7 @@ export default function Fridge() {
           }}
           animate={{
             opacity: toggleInput ? 1 : 0,
-            backgroundColor: toggleInput && "rgba(0, 0, 0, 0.358)",
+            backgroundColor: toggleInput && "rgba(0, 0, 0, 0.088)",
           }}
           transition={{
             duration: 0.12
@@ -243,14 +243,14 @@ export default function Fridge() {
           </form>
         </motion.div>
 
-        <button
+        {!response && <button
           style={{ display: toggleInput && "none" }}
           type="button"
           onClick={toggle}
           className="fridge__button fridge__button--add"
         >
           <img className="fridge__button-img" src={addIcon}/>
-        </button>
+        </button>}
       </div>
     </section>
   );
