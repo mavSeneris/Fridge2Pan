@@ -10,7 +10,7 @@ export default function Layout() {
   };
 
   const darkTheme = {
-    backgroundColor: isDarkMode &&  "#202225",
+    backgroundColor: isDarkMode && "#202225",
     background: isDarkMode && "#202225",
     color: isDarkMode ? "white" : "black",
     transition: "background 0.7s ease",
@@ -30,7 +30,13 @@ export default function Layout() {
       />
       <main>
         <Outlet
-          context={{ isDarkMode, setIsDarkMode, toggleDarkMode, btnDarkTheme, darkTheme}}
+          context={{
+            isDarkMode,
+            setIsDarkMode,
+            toggleDarkMode,
+            btnDarkTheme,
+            darkTheme,
+          }}
         />
       </main>
     </div>
