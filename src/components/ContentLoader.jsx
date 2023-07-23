@@ -1,7 +1,7 @@
 import React from "react";
 import { useOutletContext } from "react-router-dom";
 
-export default function contentLoader(props) {
+export default function ContentLoader(props) {
   const { isDarkMode } = useOutletContext();
 
   console.log(props);
