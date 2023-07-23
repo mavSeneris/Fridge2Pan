@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EmptyState from "../components/EmptyState";
-import ContentLoader from "../components/contentLoader";
+import ContentLoader from "../components/ContentLoader";
 import MarkdownView from "react-showdown";
 import { collection, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";

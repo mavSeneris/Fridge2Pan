@@ -266,7 +266,7 @@ nav {
 
 .fridge {
   width: 100%;
-  height: calc(100vh - 94px);
+  height: calc(100vh - 93px);
   /* Subtract the header height */
   display: flex;
   justify-content: space-between;
@@ -354,8 +354,8 @@ nav {
 
 .fridge-card-controls {
   position: absolute;
-  bottom: 1px;
-  width: 90%;
+  bottom: 0px;
+  width: 95%;
   height: 100px;
   display: flex;
   justify-content: space-evenly;
