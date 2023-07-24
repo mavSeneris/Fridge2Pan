@@ -209,7 +209,7 @@ export default function Fridge() {
     <section>
       <div className="fridge">
         {items.length == 0 ? (
-          <EmptyState IngredientState={true} />
+          <EmptyState/>
         ) : (
           fridgeListCard
         )}
