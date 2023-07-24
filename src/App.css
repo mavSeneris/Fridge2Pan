@@ -204,7 +204,7 @@ button:active {
   transform: rotate(-45deg) translate(1px, -9px);
 }
 
-@media (max-width: 531px) {
+@media (max-width: 699px) {
   .nav-menu {
     display: none;
     height: 100vh;
