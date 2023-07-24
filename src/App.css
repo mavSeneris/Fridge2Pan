@@ -495,24 +495,34 @@ nav {
 
 /*---Search page---*/
 
-.search-wrapper {
-  padding: 20px;
+.search{
+  border: 1px solid magenta;
+  width: 100%;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 
-.search__header {
+.search-wrapper {
   display: flex;
-  flex-direction: column;
+  height: calc(100vh - 93px);
   justify-content: center;
-  align-items: center;
-  gap: 10px;
+  border: 1px solid magenta
 }
+
 
 .search-form {
+  border: 1px solid orange;
+  position: relative;
+  width: 90%;
+  height: fit-content;
   display: flex;
-  gap: 5px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.search-form__button{
+  position: absolute;
+  right: 6px;;
 }
 
 .search-form__input {
@@ -520,6 +530,8 @@ nav {
   border: 1px solid rgb(168, 168, 168);
   padding: 0 10px;
   font-size: 1rem;
+  height: 40px;
+  width: 100%;
 }
 
 .recipe-card {
@@ -726,12 +738,13 @@ nav {
 /*---Empty State component---*/
 
 .empty-state {
-  height: calc(100vh);
+  height: calc(100vh - 200px);
   min-height: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 1px solid orangered
 }
 
 .empty-state__image {
