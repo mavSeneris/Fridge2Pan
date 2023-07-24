@@ -522,11 +522,6 @@ nav {
   font-size: 1rem;
 }
 
-.search-form__input:focus{
-  border: none;
-
-}
-
 .recipe-card {
   display: flex;
   flex-direction: column;
