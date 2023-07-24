@@ -368,6 +368,7 @@ nav {
   height: 50px;
   font-size: 1.3rem;
   padding: 5px;
+  background-color: white;
 }
 
 .fridge__button--delete {
