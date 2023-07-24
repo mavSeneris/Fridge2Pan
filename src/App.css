@@ -355,7 +355,7 @@ nav {
 .fridge-card-controls {
   position: absolute;
   bottom: 0px;
-  width: 95%;
+  width: 91%;
   height: 100px;
   display: flex;
   justify-content: space-evenly;
@@ -369,6 +369,7 @@ nav {
   font-size: 1.3rem;
   padding: 5px;
   background-color: white;
+  outline: none;
 }
 
 .fridge__button--delete {
