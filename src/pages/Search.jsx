@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import EmptyState from "../components/EmptyState";
 import ContentLoader from "../components/ContentLoader";
 import MarkdownView from "react-showdown";
 import { collection, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
@@ -108,16 +107,15 @@ export default function Search() {
     <section>
       <div className="search-wrapper">
         <div className="search">
-          <div className="search__header">
-            <h2 className="search__title"> What do you want to cook?</h2>
-            <form className="search-form" onSubmit={handleSubmit}>
+            {!recipe && <form className="search-form" onSubmit={handleSubmit}>
               <input
                 className="search-form__input"
                 type="text"
                 onChange={handleInputUpdate}
+                placeholder="Search for recipes"
               />
-              <button type="submit">Search</button>
-            </form>
+              <button className="search-form__button" type="submit">Search</button>
+            </form>}
             {recipe && (
               <div className="recipe-card">
                 {/* <h3>Recipe for {dish}:</h3> */}
@@ -130,8 +128,7 @@ export default function Search() {
                 />
               </div>
             )}
-            {response && <EmptyState RecipeState={response} />}
-          </div>
+
         </div>
       </div>
     </section>
