@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import MarkdownView from "react-showdown";
 import EmptyState from "../components/EmptyState";
-import ContentLoader from "../components/contentLoader";
+import ContentLoader from "../components/ContentLoader";
 import DeleteIcon from "../assets/DeleteIcon.svg";
 import { useOutletContext } from "react-router-dom";
 import { motion } from "framer-motion"
@@ -209,7 +209,7 @@ export default function Fridge() {
     <section>
       <div className="fridge">
         {items.length == 0 ? (
-          <EmptyState IngredientState={true} />
+          <EmptyState/>
         ) : (
           fridgeListCard
         )}
@@ -243,7 +243,8 @@ export default function Fridge() {
           </form>
         </motion.div>
 
-        {!response && <button
+        {!response && 
+          <button
           style={{ display: toggleInput && "none" }}
           type="button"
           onClick={toggle}

@@ -204,7 +204,7 @@ button:active {
   transform: rotate(-45deg) translate(1px, -9px);
 }
 
-@media (max-width: 531px) {
+@media (max-width: 699px) {
   .nav-menu {
     display: none;
     height: 100vh;
@@ -266,13 +266,13 @@ nav {
 
 .fridge {
   width: 100%;
-  height: calc(100vh - 94px);
+  height: calc(100vh - 93px);
   /* Subtract the header height */
-  min-height: 600px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   position: relative;
+  overflow-y: hidden;
 }
 
 /* Fridge list/items */
@@ -339,7 +339,6 @@ nav {
   width: 100%;
   display: flex;
   justify-content: center;
-    /* background-color: #ceafab; */
   position: absolute;
   bottom: 0;
 }
@@ -355,8 +354,8 @@ nav {
 
 .fridge-card-controls {
   position: absolute;
-  bottom: 1px;
-  width: 90%;
+  bottom: 0px;
+  width: 91%;
   height: 100px;
   display: flex;
   justify-content: space-evenly;
@@ -368,9 +367,9 @@ nav {
   width: 100%;
   height: 50px;
   font-size: 1.3rem;
-  border-color: none;
-  outline: none;
   padding: 5px;
+  background-color: white;
+  outline: none;
 }
 
 .fridge__button--delete {
@@ -405,6 +404,8 @@ nav {
 }
 
 /* Recipe card */
+
+/* ! FIX CARD OVERFLOWING BUG */
 
 .recipe-content {
   padding: 5px 20px 20px 20px;
@@ -496,24 +497,34 @@ nav {
 
 /*---Search page---*/
 
-.search-wrapper {
-  padding: 20px;
+.search{
+  border: 1px solid magenta;
+  width: 100%;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 
-.search__header {
+.search-wrapper {
   display: flex;
-  flex-direction: column;
+  height: calc(100vh - 93px);
   justify-content: center;
-  align-items: center;
-  gap: 10px;
+  border: 1px solid magenta
 }
+
 
 .search-form {
+  border: 1px solid orange;
+  position: relative;
+  width: 90%;
+  height: fit-content;
   display: flex;
-  gap: 5px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.search-form__button{
+  position: absolute;
+  right: 6px;;
 }
 
 .search-form__input {
@@ -521,11 +532,8 @@ nav {
   border: 1px solid rgb(168, 168, 168);
   padding: 0 10px;
   font-size: 1rem;
-}
-
-.search-form__input:focus{
-  border: none;
-
+  height: 40px;
+  width: 100%;
 }
 
 .recipe-card {
@@ -732,12 +740,13 @@ nav {
 /*---Empty State component---*/
 
 .empty-state {
-  height: calc(100vh);
+  height: calc(100vh - 200px);
   min-height: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 1px solid orangered
 }
 
 .empty-state__image {
