@@ -23,6 +23,7 @@ export default function Search() {
   const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
   async function saveRecipe() {
+    
     if (auth.currentUser) {
       const newRecipe = {
         recipe,

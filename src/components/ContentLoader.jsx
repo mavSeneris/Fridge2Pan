@@ -13,7 +13,7 @@ export default function ContentLoader(props) {
   };
 
   const loadingRow = (
-    <div class="load-row">
+    <div className="load-row">
       <span></span>
       <span></span>
       <span></span>
