@@ -680,12 +680,15 @@ nav {
 
 .saved-recipe-card {
   width: 100%;
-  height: 50px;
+  height:max-content;
   border: 1px solid #33333356;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  padding: 10px;
+  
 }
 
 .save-recipe-detail-wrapper {
@@ -834,5 +837,14 @@ nav {
 
 .switch input:checked + .slider:before {
   transform: translateX(1.5em);
+}
+
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
 }
 
