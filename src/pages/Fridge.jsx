@@ -40,6 +40,7 @@ export default function Fridge() {
 
   async function saveRecipe() {
     if (auth.currentUser) {
+      // setDish(prompt("what is the name of your dish?"))
       const newRecipe = {
         recipe: response,
         username: auth.currentUser.displayName,
