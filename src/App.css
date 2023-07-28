@@ -405,8 +405,6 @@ nav {
 
 /* Recipe card */
 
-/* ! FIX CARD OVERFLOWING BUG */
-
 .recipe-content {
   padding: 5px 20px 20px 20px;
   text-align: left;
