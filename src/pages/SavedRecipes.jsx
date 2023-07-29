@@ -111,7 +111,7 @@ export default function SavedRecipe() {
     <div key={recipe.recipeId} className="saved-recipe-card">
       {editedRecipeId === recipe.recipeId ? (
         // If the recipe is being edited, show the input field and "Save" and "Cancel" buttons
-        <>
+        <div className="saved-recipe-card-container">
           <input
             type="text"
             value={editedRecipeName}
@@ -128,25 +128,27 @@ export default function SavedRecipe() {
               Cancel
             </button>
           </div>
-        </>
+        </div>
       ) : (
         // If the recipe is not being edited, show the recipe name and the "Edit" button
-        <div className="saved-recipe-card-btn-wrapper">
+        <div className="saved-recipe-card-container">
           <Link to={`/saved-recipes/${recipe.recipeId}`}>
             <h3>{recipe.name}</h3>
           </Link>
-          <button
-            className="saved-recipes-btn"
-            onClick={() => setEditedRecipeId(recipe.recipeId)}
-          >
-            Edit
-          </button>
-          <button
-            className="saved-recipes-btn"
-            onClick={() => handleDelete(recipe.recipeId)}
-          >
-            DELETE
-          </button>
+          <div className="saved-recipe-card-btn-wrapper">
+            <button
+              className="saved-recipes-btn"
+              onClick={() => setEditedRecipeId(recipe.recipeId)}
+            >
+              Edit
+            </button>
+            <button
+              className="saved-recipes-btn"
+              onClick={() => handleDelete(recipe.recipeId)}
+            >
+              DELETE
+            </button>
+          </div>
         </div>
       )}
     </div>
