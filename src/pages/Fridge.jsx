@@ -61,6 +61,8 @@ export default function Fridge() {
       } else {
         await setDoc(recipesDocRef, { recipes: [newRecipe] });
       }
+    }else{
+      navigate("/saved-recipes");
     }
   }
 

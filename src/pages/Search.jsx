@@ -45,6 +45,8 @@ export default function Search() {
       } else {
         await setDoc(recipesDocRef, { recipes: [newRecipe] });
       }
+    }else{
+      navigate("/saved-recipes");
     }
   }
 

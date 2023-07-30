@@ -3,6 +3,7 @@ import { doc, getDoc, deleteDoc, setDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { Link } from "react-router-dom";
 
+
 export default function SavedRecipe() {
   const [saveRecipes, setSaveRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -117,7 +118,7 @@ export default function SavedRecipe() {
             value={editedRecipeName}
             onChange={(e) => setEditedRecipeName(e.target.value)}
           />
-          <div className="saved-recipe-btn-wrapper">
+          <div className="saved-recipe-card-btn-wrapper">
             <button
               className="saved-recipes-btn"
               onClick={() => handleEdit(recipe.recipeId)}
