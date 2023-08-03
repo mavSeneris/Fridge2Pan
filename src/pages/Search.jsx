@@ -23,7 +23,6 @@ export default function Search() {
   const apiModel = import.meta.env.VITE_REACT_API_MODEL;
 
   async function saveRecipe() {
-    
     if (auth.currentUser) {
       const newRecipe = {
         recipe,
@@ -45,7 +44,7 @@ export default function Search() {
       } else {
         await setDoc(recipesDocRef, { recipes: [newRecipe] });
       }
-    }else{
+    } else {
       navigate("/saved-recipes");
     }
   }
@@ -110,16 +109,32 @@ export default function Search() {
     <section>
       <div className="search-wrapper">
         <div className="search">
-            {!recipe && <form className="search-form" onSubmit={handleSubmit}>
+          {!recipe && (
+            <form className="search-form" onSubmit={handleSubmit}>
               <input
                 className="search-form__input"
                 type="text"
                 onChange={handleInputUpdate}
                 placeholder="Search for recipes"
               />
-              <button className="search-form__button" type="submit">Search</button>
-            </form>}
-            {recipe && (
+              <button className="search-form__button" type="submit">
+                Search
+              </button>
+            </form>
+          )}
+          {recipe && (
+            <>
+              <form className="search-form" onSubmit={handleSubmit}>
+                <input
+                  className="search-form__input"
+                  type="text"
+                  onChange={handleInputUpdate}
+                  placeholder="Search for recipes"
+                />
+                <button className="search-form__button" type="submit">
+                  Search
+                </button>
+              </form>
               <div className="recipe-card">
                 {/* <h3>Recipe for {dish}:</h3> */}
                 <button className="save-recipe-btn" onClick={saveRecipe}>
@@ -130,8 +145,8 @@ export default function Search() {
                   markdown={recipe}
                 />
               </div>
-            )}
-
+            </>
+          )}
         </div>
       </div>
     </section>
