@@ -55,6 +55,8 @@ img {
 main {
   display: flex;
   justify-content: center;
+  overflow: scroll;
+  height: 100vh;
 }
 
 section {
@@ -960,11 +962,13 @@ nav {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+;
   }
 
   /* Save-recipe-detail mobile styles */
   .save-recipe-detail-wrapper{
-    /* margin-top: 100px; */
+    max-height: 90vh;
+    overflow: scroll;
   }
 
   /* auth mohile styles */
