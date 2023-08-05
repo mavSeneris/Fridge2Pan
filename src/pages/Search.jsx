@@ -3,7 +3,7 @@ import ContentLoader from "../components/ContentLoader";
 import MarkdownView from "react-showdown";
 import { collection, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { nanoid } from "nanoid";
 
 const recipeRef = collection(db, "recipes");
@@ -16,6 +16,7 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const {isDarkMode} = useOutletContext();
 
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
@@ -117,6 +118,7 @@ export default function Search() {
                 type="text"
                 onChange={handleInputUpdate}
                 placeholder="Search for recipes"
+                style={{color: isDarkMode && "white"}}
               />
               <button className="search-form__button" type="submit">
                 Search

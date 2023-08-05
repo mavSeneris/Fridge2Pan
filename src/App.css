@@ -241,6 +241,9 @@ nav {
   border-radius: 40px;
   box-shadow: -5px 8px 2px 1px rgba(31, 31, 252, 0.219);
   font-family: "Fugaz One", cursive;
+  width: max-content;
+  max-width: fit-content;
+  
 }
 
 /*---Home Component---*/
@@ -538,6 +541,8 @@ nav {
   font-size: 1rem;
   height: 40px;
   margin-right: auto;
+  background-color: transparent;
+  width: 89%;
 }
 
 .recipe-card {
@@ -892,18 +897,15 @@ nav {
     flex-direction: column;
     justify-content: right;
     align-items: self-start;
+  
   }
 
   .main-logo-link {
     width: 100%;
   }
-  .main-logo {
-    /* font-size: 1rem; */
-    width: 100%;
-  }
 
   main {
-    flex: 6;
+    flex: 4;
   }
 
   .nav-menu {
@@ -973,5 +975,10 @@ nav {
   .register-form,
   .login-form {
     min-width: 80%;
+  }
+
+  /* Meal mobile styles */
+  .meal-card{
+    margin-top: 100px;
   }
 }
