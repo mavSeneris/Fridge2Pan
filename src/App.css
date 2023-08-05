@@ -37,7 +37,7 @@ dd {
 body {
   font-size: 16px;
   font-family: "Inter", sans-serif;
-  height: 100%;
+  height: 100vh;
 }
 
 /* Remove hyperlink styles */
@@ -224,7 +224,6 @@ header {
   padding: 24px;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   gap: 30px;
 }
 
@@ -243,7 +242,6 @@ nav {
   font-family: "Fugaz One", cursive;
   width: max-content;
   max-width: fit-content;
-  
 }
 
 /*---Home Component---*/
@@ -420,6 +418,9 @@ nav {
 
 .error-card,
 .loading-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   width: 100%;
   height: calc(100vh - 94px);
@@ -430,8 +431,8 @@ nav {
 .error-text,
 .loading-text {
   width: 100%;
-  max-width: 500px;
-  height: calc(96vh - 200px);
+  max-width: 700px;
+  height: calc(96vh - 100px);
   /* height: 80vh; */
   min-height: 500px;
   overflow-y: auto;
@@ -529,7 +530,7 @@ nav {
   height: 60px;
   display: flex;
   justify-content: center;
-  border: 1px solid #333;
+  border: 1px solid rgb(187, 187, 187);
   border-radius: 20px;
   align-items: center;
   padding: 0 12px;
@@ -684,7 +685,7 @@ nav {
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 18px;
 }
 
 .saved-recipe-card {
@@ -897,7 +898,6 @@ nav {
     flex-direction: column;
     justify-content: right;
     align-items: self-start;
-  
   }
 
   .main-logo-link {
@@ -906,6 +906,7 @@ nav {
 
   main {
     flex: 4;
+    height: 100vh;
   }
 
   .nav-menu {
@@ -961,6 +962,11 @@ nav {
     margin-top: 50px;
   }
 
+  /* Save-recipe-detail mobile styles */
+  .save-recipe-detail-wrapper{
+    /* margin-top: 100px; */
+  }
+
   /* auth mohile styles */
   .register-container,
   .login-container {
@@ -978,7 +984,14 @@ nav {
   }
 
   /* Meal mobile styles */
-  .meal-card{
+  .meal-card {
+    margin-top: 100px;
+  }
+
+  /* ContentLoader mobile styles */
+
+  .error-text,
+  .loading-text {
     margin-top: 100px;
   }
 }

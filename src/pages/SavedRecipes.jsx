@@ -3,16 +3,13 @@ import { doc, getDoc, deleteDoc, setDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { Link } from "react-router-dom";
 
-
 export default function SavedRecipe() {
   const [saveRecipes, setSaveRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [editMode, setEditMode] = useState(false); // State to toggle edit mode
   const [editedRecipeName, setEditedRecipeName] = useState(""); // State to store edited recipe name
   const [editedRecipeId, setEditedRecipeId] = useState(null); // State to store the recipe ID being edited
   const username = auth.currentUser.displayName;
   const [isNewRecipeAdded, setIsNewRecipeAdded] = useState(false);
-
   const capitalizedUsername =
     username.charAt(0).toUpperCase() + username.slice(1);
 

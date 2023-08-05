@@ -16,7 +16,7 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const {isDarkMode} = useOutletContext();
+  const { isDarkMode } = useOutletContext();
 
   const apiURL = import.meta.env.VITE_REACT_API_URL;
   const apiKey = import.meta.env.VITE_REACT_API_KEY;
@@ -106,19 +106,22 @@ export default function Search() {
     return <ContentLoader back={back} fridgeView={false} isLoading={false} />;
   }
 
-
   return (
     <section>
       <div className="search-wrapper">
         <div className="search">
           {!recipe && (
-            <form className="search-form" onSubmit={handleSubmit}>
+            <form
+              style={{ border: isDarkMode && "1px solid rgb(187, 187, 187)" }}
+              className="search-form"
+              onSubmit={handleSubmit}
+            >
               <input
                 className="search-form__input"
                 type="text"
                 onChange={handleInputUpdate}
                 placeholder="Search for recipes"
-                style={{color: isDarkMode && "white"}}
+                style={{ color: isDarkMode && "white" }}
               />
               <button className="search-form__button" type="submit">
                 Search
@@ -127,12 +130,19 @@ export default function Search() {
           )}
           {recipe && (
             <>
-              <form className="search-form" onSubmit={handleSubmit}>
+              <form
+                style={{ border: isDarkMode && "1px solid rgb(187, 187, 187)" }}
+                className="search-form"
+                onSubmit={handleSubmit}
+              >
                 <input
                   className="search-form__input"
                   type="text"
                   onChange={handleInputUpdate}
                   placeholder="Search for recipes"
+                  style={{
+                    color: isDarkMode && "white",
+                  }}
                 />
                 <button className="search-form__button" type="submit">
                   Search
