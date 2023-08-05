@@ -117,6 +117,7 @@ export default function SavedRecipe() {
             type="text"
             value={editedRecipeName}
             onChange={(e) => setEditedRecipeName(e.target.value)}
+            placeholder={recipe.name}
           />
           <div className="saved-recipe-card-btn-wrapper">
             <button

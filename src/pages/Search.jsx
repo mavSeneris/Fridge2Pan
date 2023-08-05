@@ -105,6 +105,7 @@ export default function Search() {
     return <ContentLoader back={back} fridgeView={false} isLoading={false} />;
   }
 
+
   return (
     <section>
       <div className="search-wrapper">
