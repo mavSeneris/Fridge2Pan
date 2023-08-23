@@ -29,7 +29,6 @@ export default function Home({btnDarkTheme}) {
           Your ultimate recipe and meal planning app! Discover recipes, search
           by available ingredients in your fridge, and efficiently plan your
           meals. Reduce food waste and improve your cooking with Fridge2Pan.
-          Download now and embark on a culinary adventure!
         </p>
         <MealTime btnDarkTheme={btnDarkTheme}/>
       </div>
