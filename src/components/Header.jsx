@@ -9,6 +9,7 @@ export default function Header({ toggleDarkMode, isDarkMode, darkTheme }) {
   const [isChecked, setIsChecked] = useState(false);
   const { currentUser } = useContext(AuthContext);
 
+  // Navbar wides screen styles:
   const activeStyles = {
     fontWeight: "bold",
     textDecoration: "underline",
@@ -17,6 +18,7 @@ export default function Header({ toggleDarkMode, isDarkMode, darkTheme }) {
     backgroundColor: "transparent",
   };
 
+  // Navbar small screen styles:
   const burgerActiveStyles = {
     textDecorationColor: "#adadff",
     color: "#f55742",

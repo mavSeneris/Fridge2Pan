@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MealTime from "../components/MealTime";
 import { auth } from "../firebase";
-import { useOutletContext } from "react-router-dom";
-
 
 export default function Home({btnDarkTheme}) {
   const [displayName, setDisplayName] = useState("");
